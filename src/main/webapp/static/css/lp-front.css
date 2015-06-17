@@ -1,0 +1,184 @@
+
+.test-sharp {
+  background-color: #fbeef7;
+  height: 50px;
+}
+
+h1,h2,h3 {
+  font-family: "黑体", "Helvetica","Arial","Verdana","sans-serif";
+}
+
+.lvpaizhe-background-color {
+  background-color: #eee;
+}
+
+.lvpaizhe-padding-bottom {
+  padding-bottom: 10px; 
+}
+
+.lvpaizhe-margin-top-bottom {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: #fbeef7;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lvpaizhe-a-padding {
+  padding-top: 7px;
+}
+
+.lvpaizhe-margin-bottom {
+  margin-bottom: 20px;
+}
+
+.homepage-carousel-margin-top {
+  margin-top: -20px;
+}
+
+.place > img {
+  margin-bottom: 5px;
+}
+
+/*摄影师一览部分样式*/
+.lvpaizhe-photographer-index-box {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.lvpaizhe-photographer-avatar {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.lvpaizhe-photographer-table {
+  margin: auto;
+  line-height: 35px;
+  margin-left: 0;
+}
+
+.lvpaizhe-photographer-pic {
+  margin-bottom: 10px;
+}
+
+/*摄影师一览部分样式结束*/
+
+.navbar-lvpaizhe {
+  background-color: #fbeef7;
+  border-color: #c0c0c0;
+  font-family: "微软雅黑";
+  margin-bottom: 20px;
+
+}
+.navbar-lvpaizhe .navbar-brand {
+  color: #801e63;
+}
+.navbar-lvpaizhe .navbar-brand:hover,
+.navbar-lvpaizhe .navbar-brand:focus {
+  color: #5e5e5e;
+  background-color: transparent;
+}
+.navbar-lvpaizhe .navbar-text {
+  color: #801e63;
+}
+.navbar-lvpaizhe .navbar-nav > li > a {
+  color: #801e63;
+  font-size: 16px;
+}
+.navbar-lvpaizhe .navbar-nav > li > a:hover,
+.navbar-lvpaizhe .navbar-nav > li > a:focus {
+  color: #801e63;
+  background-color: #f5d6ec;
+}
+.navbar-lvpaizhe .navbar-nav > .active > a,
+.navbar-lvpaizhe .navbar-nav > .active > a:hover,
+.navbar-lvpaizhe .navbar-nav > .active > a:focus {
+  color: #fffafd;
+  background-color: #E10999;
+}
+.navbar-lvpaizhe .navbar-nav > .disabled > a,
+.navbar-lvpaizhe .navbar-nav > .disabled > a:hover,
+.navbar-lvpaizhe .navbar-nav > .disabled > a:focus {
+  color: #ccc;
+  background-color: transparent;
+}
+.navbar-lvpaizhe .navbar-toggle {
+  border-color: #ddd;
+}
+.navbar-lvpaizhe .navbar-toggle:hover,
+.navbar-lvpaizhe .navbar-toggle:focus {
+  background-color: #ddd;
+}
+.navbar-lvpaizhe .navbar-toggle .icon-bar {
+  background-color: #888;
+}
+.navbar-lvpaizhe .navbar-collapse,
+.navbar-lvpaizhe .navbar-form {
+  border-color: #e7e7e7;
+}
+.navbar-lvpaizhe .navbar-nav > .open > a,
+.navbar-lvpaizhe .navbar-nav > .open > a:hover,
+.navbar-lvpaizhe .navbar-nav > .open > a:focus {
+  color: #801e63;
+  background-color: #f5d6ec;
+}
+@media (max-width: 767px) {
+  .navbar-lvpaizhe .navbar-nav .open .dropdown-menu > li > a {
+    color: #801e63;
+  }
+  .navbar-lvpaizhe .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-lvpaizhe .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #333;
+    background-color: transparent;
+  }
+  .navbar-lvpaizhe .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-lvpaizhe .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-lvpaizhe .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #fffafd;
+    background-color: transparent;
+  }
+  .navbar-lvpaizhe .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-lvpaizhe .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-lvpaizhe .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #ccc;
+    background-color: transparent;
+  }
+}
+.navbar-lvpaizhe .navbar-link {
+  color: #801e63;
+}
+.navbar-lvpaizhe .navbar-link:hover {
+  color: #333;
+}
+.navbar-lvpaizhe .btn-link {
+  color: #801e63;
+}
+.navbar-lvpaizhe .btn-link:hover,
+.navbar-lvpaizhe .btn-link:focus {
+  color: #333;
+}
+.navbar-lvpaizhe .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-lvpaizhe .btn-link:hover,
+.navbar-lvpaizhe .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-lvpaizhe .btn-link:focus {
+  color: #ccc;
+}
+
+.navbar-nav > li > .dropdown-menu {
+  background-color: #fbeef7;
+  font-family: "微软雅黑";
+  color: #801e63;
+}
+
+.lvpaizhe-footer {
+  width: 100%;
+  height: 65px;
+  color: #801e63;
+  background-color: #fbeef7;
+  border-top: 1px solid;
+  border-color: #c0c0c0;
+  margin-bottom: 0px;
+}

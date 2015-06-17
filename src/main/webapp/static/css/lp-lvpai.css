@@ -1,0 +1,14 @@
+/*lvpai页面专用样式表
+2015-05-31
+雅痞*/
+
+.movieborder {
+  border-top: 50px;
+  border-bottom: 50px;
+  border-style: solid;
+  border-color: black;
+}
+
+.placedescribe {
+	height: 350px;
+}

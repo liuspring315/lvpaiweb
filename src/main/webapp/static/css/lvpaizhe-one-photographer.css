@@ -1,0 +1,50 @@
+/*摄影师个人页面专用样式文件*/
+/*2015-05-10*/
+/*雅痞制作*/
+
+.lvpaizhe-one-photographer-desc-margin {
+	margin-left: 20px;
+}
+
+.lvpaizhe-one-photographer-collection-margin {
+	margin-top: 20px;
+}
+
+.lvpaizhe-one-photographer-context-margin {
+	margin-top: 18px;
+	margin-left: 20px;
+	background-color: #eee;
+	padding: 8px;
+	border-radius: 6px 6px 6px 6px;
+}
+
+#context img {
+	margin-right: 5px;
+}
+
+#share {
+	margin: 33px;
+}
+
+#tabs {
+	margin: 20px;
+}
+
+.tab-border {
+	border-color: #ddd;
+	border-width: 1px;
+	border-style: solid;
+	border-top-style: none;
+}
+
+.pics-padding {
+	padding-top: 10px;
+	padding-left: 25px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+
+.goods-desc-lineheight {
+	line-height: 32px;
+}
+
