@@ -137,7 +137,7 @@
                     var goods = data.list[i];
                     var tmp = "<div class=\"row\">";
                     tmp = tmp + "<div class=\"col-md-3 pics-padding\">";
-                    tmp = tmp + "<img src=\"img/4473131_183410472000_2.jpg\" width=\"242\" height=\"175\">";
+                    tmp = tmp + "<img src=\""+ctx + "/web/photographer/goods_avatar_small?id=" + goods.id +"\" width=\"242\" height=\"175\">";
                     tmp = tmp + "</div>";
                     tmp = tmp + "<div class=\"col-md-8\">";
                     tmp = tmp + "<h3>";

@@ -250,7 +250,9 @@
                         if (data && data==1) {
                             alert("提交订单成功");
                             window.location.href = ctx + "/photographer/goods/list";
-                        } else {
+                        } else if (data==-1) {
+                            alert("该服务已审核通过不能修改");
+                        }else {
                             var emsg = data.msg;
                             alert(emsg);
                         }

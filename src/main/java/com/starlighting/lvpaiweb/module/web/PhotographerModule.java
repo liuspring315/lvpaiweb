@@ -3,6 +3,7 @@ package com.starlighting.lvpaiweb.module.web;
 import com.restfb.types.User;
 import com.starlighting.lvpaiweb.bean.*;
 import com.starlighting.lvpaiweb.module.BaseModule;
+import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
 import org.nutz.dao.FieldFilter;
@@ -12,6 +13,9 @@ import org.nutz.dao.util.Daos;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +41,7 @@ public class PhotographerModule extends BaseModule {
     public Object photographer_all(@Param("..")Pager pager) {
         Condition cnd = Cnd.where("userType", "=", UserTypeEnum.PHOTOGRAPHER.getCode())
                 .and("registerCheckState", "=", RegisterCheckStateEnum.APPROVE_YES.getCode())
-                .and("authenticationStat", "=", AuthenticationStatEnum.APPROVE_YES.getCode())
+//                .and("authenticationStat", "=", AuthenticationStatEnum.APPROVE_YES.getCode())
                 .desc("id");
         QueryResult qr = new QueryResult();
         List<UserGeneralInfo> userGeneralInfoList = dao.query(UserGeneralInfo.class, cnd, pager);
@@ -73,6 +77,20 @@ public class PhotographerModule extends BaseModule {
         pager.setRecordCount(dao.count(GoodsInfo.class, cnd));
         qr.setPager(pager);
         return ajaxOk(qr);
+    }
+
+    @RequiresUser
+    @Ok("raw:jpg")
+    @At("/goods_avatar_small")
+    @GET
+    public Object pic_avatar_small(@Param("id")long gid, HttpServletRequest req,@Param("..")Pager pager) throws SQLException {
+        pager.setPageSize(1);
+        Cnd cnd = Cnd.NEW().where("gid", "=", gid);
+        List<GoodsPic> goodsPics = dao.query(GoodsPic.class, cnd, pager);
+        if (goodsPics == null || goodsPics.size() == 0) {
+            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+        }
+        return goodsPics.get(0).getAvatarSmall();
     }
 
     @At("/allPhotographerList")

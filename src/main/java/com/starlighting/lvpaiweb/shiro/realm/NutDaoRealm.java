@@ -91,9 +91,9 @@ public class NutDaoRealm extends AuthorizingRealm {
             if (user.getRegisterCheckState() == RegisterCheckStateEnum.APPROVE_NO.getCode()) {
                 throw Lang.makeThrow(DisabledAccountException.class, "用户 [ %s ] 审核不通过", upToken.getUsername());
             }
-            if (user.getRegisterCheckState() == RegisterCheckStateEnum.WAIT_APPROVE.getCode()) {
-                throw Lang.makeThrow(DisabledAccountException.class, "用户 [ %s ] 待审核", upToken.getUsername());
-            }
+//            if (user.getRegisterCheckState() == RegisterCheckStateEnum.WAIT_APPROVE.getCode()) {
+//                throw Lang.makeThrow(DisabledAccountException.class, "用户 [ %s ] 待审核", upToken.getUsername());
+//            }
         }
 
         dao.fetchLinks(user, "roles");

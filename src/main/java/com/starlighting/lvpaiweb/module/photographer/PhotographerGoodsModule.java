@@ -62,10 +62,10 @@ public class PhotographerGoodsModule extends BaseModule {
     @At
     @Ok("jsp:views.photographer.photographer_goods_list")
     public Object list(@Attr("me")UserGeneralInfo me) {
-        PhotographerExtra photographerExtra = dao.fetch(PhotographerExtra.class, me.getId());
-        if(photographerExtra == null || photographerExtra.getAuthentication() ==0){
-            return 0;//未申请认证不允许提交拍摄服务
-        }
+//        PhotographerExtra photographerExtra = dao.fetch(PhotographerExtra.class, me.getId());
+//        if(photographerExtra == null || photographerExtra.getAuthentication() ==0){
+//            return 0;//未申请认证不允许提交拍摄服务
+//        }
         return 1;
     }
 
@@ -88,11 +88,11 @@ public class PhotographerGoodsModule extends BaseModule {
 
     public Object add(@Attr("me")UserGeneralInfo me) {
         Map<String,Object> map = new HashMap<String,Object>();
-        PhotographerExtra photographerExtra = dao.fetch(PhotographerExtra.class, me.getId());
-        if(photographerExtra == null || photographerExtra.getAuthentication() ==0){
-            map.put("can",0);
-            return map;//未申请认证不允许提交拍摄服务
-        }
+//        PhotographerExtra photographerExtra = dao.fetch(PhotographerExtra.class, me.getId());
+//        if(photographerExtra == null || photographerExtra.getAuthentication() ==0){
+//            map.put("can",0);
+//            return map;//未申请认证不允许提交拍摄服务
+//        }
         map.put("can",1);
         map.put("projectList",dao.query(DicProject.class, Cnd.NEW()));
         return map;
@@ -102,11 +102,12 @@ public class PhotographerGoodsModule extends BaseModule {
     @Ok("jsp:views.photographer.photographer_goods_add")
     public Object view(@Attr("me")UserGeneralInfo me,@Param("id") int id) {
         Map<String,Object> map = new HashMap<String,Object>();
-        PhotographerExtra photographerExtra = dao.fetch(PhotographerExtra.class, me.getId());
-        if(photographerExtra == null || photographerExtra.getAuthentication() ==0){
-            map.put("can",0);
-            return map;//未申请认证不允许提交拍摄服务
-        }
+//        PhotographerExtra photographerExtra = dao.fetch(PhotographerExtra.class, me.getId());
+//        if(photographerExtra == null || photographerExtra.getAuthentication() ==0){
+//            map.put("can",0);
+//            return map;//未申请认证不允许提交拍摄服务
+//        }
+        map.put("can",1);
         GoodsInfo goodsInfo = dao.fetch(GoodsInfo.class, id);
         dao.fetchLinks(goodsInfo, "dicProjects");
         dao.fetchLinks(goodsInfo, "dicPlace");
@@ -120,10 +121,10 @@ public class PhotographerGoodsModule extends BaseModule {
     @Ok("json")
     @Aop(TransAop.READ_COMMITTED)
     public Object update(@Attr("me")UserGeneralInfo me,@Param("..") GoodsInfo goodsInfo,@Param("dicProjectsId") int [] projectId) {
-        PhotographerExtra photographerExtra = dao.fetch(PhotographerExtra.class, me.getId());
-        if(photographerExtra == null || photographerExtra.getAuthentication() ==0){
-            return 0;//未申请认证不允许提交拍摄服务
-        }
+//        PhotographerExtra photographerExtra = dao.fetch(PhotographerExtra.class, me.getId());
+//        if(photographerExtra == null || photographerExtra.getAuthentication() ==0){
+//            return 0;//未申请认证不允许提交拍摄服务
+//        }
         Date now = new Date();
         if(goodsInfo.getId() == 0){
 
@@ -174,6 +175,8 @@ public class PhotographerGoodsModule extends BaseModule {
                 goodsInfo.setDicProjects(ps);
                 dao.update(data);
                 dao.insertRelation(goodsInfo, "dicProjects");
+            }else{
+                return -1;
             }
         }
         return 1;
