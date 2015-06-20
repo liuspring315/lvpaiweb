@@ -1,9 +1,12 @@
 package com.starlighting.lvpaiweb.module;
 
+import com.starlighting.lvpaiweb.bean.Permission;
 import com.starlighting.lvpaiweb.bean.UserGeneralInfo;
 import com.starlighting.lvpaiweb.bean.UserTypeEnum;
 import com.starlighting.lvpaiweb.service.manager.UserService;
+import org.nutz.aop.interceptor.ioc.TransAop;
 import org.nutz.dao.Cnd;
+import org.nutz.ioc.aop.Aop;
 import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Strings;
@@ -11,6 +14,9 @@ import org.nutz.lang.util.NutMap;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @功能说明：
@@ -34,6 +40,7 @@ public class ServerRegisterModule  extends BaseModule{
     }
 
     @At("/server/photoer/user_register_submit")
+    @Aop(TransAop.READ_COMMITTED)
     public Object user_register_submit(@Param("..")UserGeneralInfo user) {
 
         NutMap re = new NutMap();
@@ -43,6 +50,12 @@ public class ServerRegisterModule  extends BaseModule{
         }
         user.setUserType(UserTypeEnum.PHOTOGRAPHER.getCode());
         user = userService.add(user);
+
+        List<Permission> ps = new ArrayList<Permission>();
+        Permission p = dao.fetch(Permission.class, 10);
+        ps.add(p);
+        user.setPermissions(ps);
+        dao.insertRelation(user, "permissions");
         return re.setv("ok", true).setv("data", user);
     }
 

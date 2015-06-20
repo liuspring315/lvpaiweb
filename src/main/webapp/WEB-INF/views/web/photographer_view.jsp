@@ -23,7 +23,7 @@
                         ${obj.lastName}&nbsp;&nbsp;&nbsp;&nbsp;${obj.dicPlace.placeName}
                     </h2>
                     <p>
-                        V${obj.photographerExtra.authentication} 高级认证
+                        V${obj.photographerExtra.authentication} 认证
                     </p>
                     <p>
                         ${obj.photographerExtra.orderNum} 次成功服务
@@ -179,7 +179,7 @@
                     tmp = tmp + "<lable>总价格："+goods.totalPrice+"元</lable>";
                     tmp = tmp + "</div>";
                     tmp = tmp + "<div class=\"col-md-3\">";
-                    tmp = tmp + "<lable>预付款："+goods.goodsadvancePayment+"元</lable>";
+                    tmp = tmp + "<lable>预付款："+goods.advancePayment+"元</lable>";
                     tmp = tmp + "</div>";
                     tmp = tmp + "<div class=\"col-md-2 col-md-offset-3 goods-btn text-right\">";
                     tmp = tmp + "<button class=\"btn btn-info\" type=\"button\">详情</button>";

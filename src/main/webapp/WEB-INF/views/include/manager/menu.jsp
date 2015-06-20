@@ -283,7 +283,17 @@
                     </c:if>
                 </c:forEach>
             </c:forEach>
-
+            <c:forEach items="${me.permissions}" var ="permission">
+                    <c:if test="${permission.ismenu}">
+                        <li>
+                            <a href="${ctx}${permission.description}">
+                                <i class="fa fa-edit"></i>
+                                <span>${permission.alias}</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                        </li>
+                    </c:if>
+            </c:forEach>
         </ul>
     </section>
     <!-- /.sidebar -->

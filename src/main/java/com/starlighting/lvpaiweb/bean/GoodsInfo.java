@@ -113,6 +113,7 @@ public class GoodsInfo  extends BasePojo{
     protected DicPlace dicPlace;
 
 
+
     @Many(target = GoodsPic.class, field = "gid")
     private List<GoodsPic> goodsPics = new ArrayList<GoodsPic>();
 

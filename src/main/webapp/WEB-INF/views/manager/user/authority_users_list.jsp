@@ -283,9 +283,9 @@
                            html += p.name;
                        }
                        if (flag) {
-                           html += "<input type='checkbox' t='checkbox_user_permission' pid='" + p.id + "' checked='true'>\n"
+                           html += "<input type='checkbox' t='checkbox_user_permission' pid='" + p.id + "' checked='true'><br>"
                        } else {
-                           html += "<input type='checkbox' t='checkbox_user_permission' pid='" + p.id + "'>\n"
+                           html += "<input type='checkbox' t='checkbox_user_permission' pid='" + p.id + "'><br>"
                        }
                    }
                    $("#user_permission_modify_id").val(""+user_id);
@@ -311,7 +311,8 @@
            data : JSON.stringify({"user":{id:user_id}, "permissions":pids}),
            success : function() {
                loadUsers();
-               $('#user_permission_modify_modal').modal('show');
+               $('#user_permission_modify_modal').modal('hide');
+               loadUsers();
            }
        });
    };
