@@ -109,13 +109,13 @@
                             <lable>原片数量</lable>
                         </div>
                         <div class="col-md-4">
-                            <lable>100张</lable>
+                            <lable>${obj.goodsInfo.originalNum}张</lable>
                         </div>
                         <div class="col-md-2 lvpaizhe-tab">
                             <lable>精修数量</lable>
                         </div>
                         <div class="col-md-4">
-                            <lable>50张</lable>
+                            <lable>${obj.goodsInfo.processingNum}张</lable>
                         </div>
                         </p>
                     </div>
@@ -158,13 +158,13 @@
                                     <lable><strong>联系客服</strong></lable>
                                 </div>
                                 <div class="col-md-3">
-                                    <lable><img alt="16×16" src="img/envelope.gif"/>站内留言</lable>
+                                    <lable><img alt="16×16" src="${resourceUrl}/img/envelope.gif"/>站内留言</lable>
                                 </div>
                                 <div class="col-md-3">
-                                    <lable><img alt="16×16" src="img/wechat.png"/>微信联系</lable>
+                                    <lable><img alt="16×16" src="${resourceUrl}/img/wechat.png"/>微信联系</lable>
                                 </div>
                                 <div class="col-md-3">
-                                    <lable><img alt="16×16" src="img/qq.png"/>QQ联系</lable>
+                                    <lable><img alt="16×16" src="${resourceUrl}/img/qq.png"/>QQ联系</lable>
                                 </div>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
                     <!-- 自定义服务内容展示 -->
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <img src="img/aaa.jpg">
+                            <img src="${resourceUrl}/img/aaa.jpg">
                         </div>
                     </div>
 
@@ -204,13 +204,13 @@
                                     <lable><strong>联系客服</strong></lable>
                                 </div>
                                 <div class="col-md-3">
-                                    <lable><img alt="16×16" src="img/envelope.gif"/>站内留言</lable>
+                                    <lable><img alt="16×16" src="${resourceUrl}/img/envelope.gif"/>站内留言</lable>
                                 </div>
                                 <div class="col-md-3">
-                                    <lable><img alt="16×16" src="img/wechat.png"/>微信联系</lable>
+                                    <lable><img alt="16×16" src="${resourceUrl}/img/wechat.png"/>微信联系</lable>
                                 </div>
                                 <div class="col-md-3">
-                                    <lable><img alt="16×16" src="img/qq.png"/>QQ联系</lable>
+                                    <lable><img alt="16×16" src="${resourceUrl}/img/qq.png"/>QQ联系</lable>
                                 </div>
                             </div>
                         </div>
@@ -229,95 +229,9 @@
 </form>
 <script type="text/javascript">
     $(document).ready(function() {
-        loadGoods(1,20);
-    });//end ready
-    function loadGoods(pageNumber,pageSize){
-        var postdata = $("#goods_query_form").serializeArray ();
-        if(pageNumber){
-            postdata.push({name: 'pageNumber', value: pageNumber});
-            postdata.push({name: 'pageSize', value: pageSize});
-        }
-        $.ajax({
-            url : ctx + "/web/photographer/goodsquery",
-            data : postdata,
-            dataType : "json",
-            type : "POST",
-            success : function(re) {
-                if (!re.ok) {
-                    alert(re.msg);
-                    return;
-                }
-                data = re.data;
-                //console.log(data);
-                var list_html = "";
-                //console.log(data.list);
-                for (var i=0;i<data.list.length;i++) {
-                    var goods = data.list[i];
-                    var tmp = "<div class=\"row\">";
-                    tmp = tmp + "<div class=\"col-md-3 pics-padding\">";
-                    tmp = tmp + "<img src=\""+ctx + "/web/photographer/goods_avatar_small?id=" + goods.id +"\" width=\"242\" height=\"175\">";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "<div class=\"col-md-8\">";
-                    tmp = tmp + "<h3>";
-                    tmp = tmp + goods.goodsName;
-                    tmp = tmp + "</h3>";
-                    tmp = tmp + "<div class=\"row goods-desc-lineheight\">";
-                    tmp = tmp + "<p>";
-                    tmp = tmp + "<div class=\"col-md-4\">";
-                    tmp = tmp + "<lable>"+goods.dicPlace.placeName+"</lable>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "<div class=\"col-md-4\">";
-                    tmp = tmp + "<lable>";
-                    switch(goods.photoType){
-                        case 1:tmp = tmp + "婚纱摄影";break;
-                        case 2:tmp = tmp + "旅行跟拍";break;
-                        case 3:tmp = tmp + "上门拍";break;
-                        default :tmp = tmp +  "";
-                    }
-                    tmp = tmp + "</lable>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "</p>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "<div class=\"row goods-desc-lineheight\">";
-                    tmp = tmp + "<p>";
-                    for (var j=0;j<goods.dicProjects;j++) {
-                        var project = goods.dicProjects[i];
-                        tmp = tmp + "<div class=\"col-md-2\">";
-                        tmp = tmp + "<label>";
-                        tmp = tmp + "<span class=\""+project.projectIco+"\"></span>"+project.projectName;
-                        tmp = tmp + "</label>";
-                        tmp = tmp + "</div>";
-                    }
 
-                    tmp = tmp + "</p>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "<div class=\"row goods-desc-lineheight\">";
-                    tmp = tmp + "<p>";
-                    tmp = tmp + "<div class=\"col-md-3\">";
-                    tmp = tmp + "<lable>总价格："+goods.totalPrice+"元</lable>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "<div class=\"col-md-3\">";
-                    tmp = tmp + "<lable>预付款："+goods.advancePayment+"元</lable>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "<div class=\"col-md-2 col-md-offset-3 goods-btn text-right\">";
-                    tmp = tmp + "<button class=\"btn btn-info\" type=\"button\">详情</button>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "<div class=\"col-md-1 goods-btn\">";
-                    tmp = tmp + "<button class=\"btn btn-primary\" type=\"button\">预定</button>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "</p>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "<hr>";
-                    list_html += tmp;
-                }
-                $("#div_goods").html(list_html);
-                $("#div_pager").html(PagerTag.showPagerTag("loadGoods","",data.pager));
-                //console.log(window._user_roles);
-            }
-        });
-    }
+    });//end ready
+
 
 </script>
 </body>

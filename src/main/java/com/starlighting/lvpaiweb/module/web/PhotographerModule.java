@@ -79,7 +79,6 @@ public class PhotographerModule extends BaseModule {
         return ajaxOk(qr);
     }
 
-    @RequiresUser
     @Ok("raw:jpg")
     @At("/goods_avatar_small")
     @GET

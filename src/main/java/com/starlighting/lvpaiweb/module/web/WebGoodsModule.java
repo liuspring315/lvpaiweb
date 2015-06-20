@@ -21,7 +21,7 @@ import java.util.Map;
  */
 @IocBean // 声明为Ioc容器中的一个Bean
 @At("/web/goods")
-public class GoodsModule extends BaseModule {
+public class WebGoodsModule extends BaseModule {
 
     /**
      * 地点详情页

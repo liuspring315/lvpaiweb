@@ -48,6 +48,14 @@
             $("#location").val(id);
             $("#placeSelectModal").modal('hide');
         }
+        <%
+ 	if (session.getAttribute("upload-error-msg") != null) {
+ 		String msg = session.getAttribute("upload-error-msg")
+ 				.toString();
+ 		out.print("alert('"+msg+"');");
+ 		session.removeAttribute("upload-error-msg");
+ 	}
+ %>
     </script>
 </head>
 <body class="skin-blue">
@@ -181,7 +189,7 @@
 
 
                                 </form>
-                                <form class="form-inline" role="form"  action="${ctx}/photographer/info/avatar" method="post"
+                                <form class="form-inline" role="form"  action="${ctx}/photographer/info/update_avatar" method="post"
                                       enctype="multipart/form-data">
                                     <div>
                                         <img   src="${ctx}/photographer/info/avatar">

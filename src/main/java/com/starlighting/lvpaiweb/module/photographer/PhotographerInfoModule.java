@@ -170,7 +170,7 @@ public class PhotographerInfoModule extends BaseModule {
     @AdaptBy(type=UploadAdaptor.class, args={"${app.root}/WEB-INF/tmp/user_avatar", "8192", "utf-8", "20000000", "102400000"})
     @POST
     @Ok(">>:/photographer/info/view")
-    @At("/avatar")
+    @At("/update_avatar")
     public void uploadAvatar(@Param("file")TempFile tf,
                              @Attr("me")UserGeneralInfo me,
                              AdaptorErrorContext err) {
@@ -181,32 +181,36 @@ public class PhotographerInfoModule extends BaseModule {
             msg = "空文件";
         } else {
             PhotographerExtra photographerExtra = dao.fetch(PhotographerExtra.class, me.getId());
-            try {
-                BufferedImage image = Images.read(tf.getFile());
-                image = Images.zoomScale(image, imgSmallWidth, imgSmallHeight, Color.WHITE);
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                Images.writeJpeg(image, out, 0.8f);
-                photographerExtra.setAvatarSmall(out.toByteArray());
+            if(photographerExtra == null){
+                msg = "请先保存基本信息，再上传图片";
+            }else {
+                try {
+                    BufferedImage image = Images.read(tf.getFile());
+                    image = Images.zoomScale(image, imgSmallWidth, imgSmallHeight, Color.WHITE);
+                    ByteArrayOutputStream out = new ByteArrayOutputStream();
+                    Images.writeJpeg(image, out, 0.8f);
+                    photographerExtra.setAvatarSmall(out.toByteArray());
 
-                image = Images.read(tf.getFile());
-                image = Images.zoomScale(image, imgMediumWidth, imgMediumHeight, Color.WHITE);
-                out = new ByteArrayOutputStream();
-                Images.writeJpeg(image, out, 0.8f);
-                photographerExtra.setAvatarMedium(out.toByteArray());
+                    image = Images.read(tf.getFile());
+                    image = Images.zoomScale(image, imgMediumWidth, imgMediumHeight, Color.WHITE);
+                    out = new ByteArrayOutputStream();
+                    Images.writeJpeg(image, out, 0.8f);
+                    photographerExtra.setAvatarMedium(out.toByteArray());
 
-                image = Images.read(tf.getFile());
-                image = Images.zoomScale(image, imgBigHeight, imgBigHeight, Color.WHITE);
-                out = new ByteArrayOutputStream();
-                Images.writeJpeg(image, out, 0.8f);
-                photographerExtra.setAvatarBig(out.toByteArray());
+                    image = Images.read(tf.getFile());
+                    image = Images.zoomScale(image, imgBigHeight, imgBigHeight, Color.WHITE);
+                    out = new ByteArrayOutputStream();
+                    Images.writeJpeg(image, out, 0.8f);
+                    photographerExtra.setAvatarBig(out.toByteArray());
 
-                dao.update(photographerExtra, "^avatar|avatarMedium|avatarBig$");
-            } catch(DaoException e) {
-                log.error("System Error", e);
-                msg = "系统错误";
-            } catch (Throwable e) {
-                log.error("System Error", e);
-                msg = "图片格式错误";
+                    dao.update(photographerExtra, "^avatar|avatarMedium|avatarBig$");
+                } catch (DaoException e) {
+                    log.error("System Error", e);
+                    msg = "系统错误";
+                } catch (Throwable e) {
+                    log.error("System Error", e);
+                    msg = "图片格式错误";
+                }
             }
         }
 
@@ -216,7 +220,7 @@ public class PhotographerInfoModule extends BaseModule {
 
     @RequiresUser
     @Ok("raw:jpg")
-    @At("/avatar")
+    @At("/avatar_idcardFront")
     @GET
     public Object readAvatarIdcardFront( @Attr("me")UserGeneralInfo me, HttpServletRequest req) throws SQLException {
         PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^idcardFront$")).fetch(PhotographerExtra.class, me.getId());

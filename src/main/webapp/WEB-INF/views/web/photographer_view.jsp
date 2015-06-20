@@ -182,7 +182,7 @@
                     tmp = tmp + "<lable>预付款："+goods.advancePayment+"元</lable>";
                     tmp = tmp + "</div>";
                     tmp = tmp + "<div class=\"col-md-2 col-md-offset-3 goods-btn text-right\">";
-                    tmp = tmp + "<button class=\"btn btn-info\" type=\"button\">详情</button>";
+                    tmp = tmp + "<button class=\"btn btn-info\" type=\"button\" onclick='javascript:showgoods("+goods.id+")'>详情</button>";
                     tmp = tmp + "</div>";
                     tmp = tmp + "<div class=\"col-md-1 goods-btn\">";
                     tmp = tmp + "<button class=\"btn btn-primary\" type=\"button\">预定</button>";
@@ -200,7 +200,13 @@
             }
         });
     }
-
+    function showgoods(id){
+        $("#goodsid").val(id);
+        $("#goods_view_form").submit();
+    }
 </script>
+<form action="${ctx}/web/goods/view" id="goods_view_form" method="post">
+    <input type="hidden" name="id" id="goodsid" value=""/>
+</form>
 </body>
 </html>

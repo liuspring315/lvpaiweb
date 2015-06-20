@@ -54,6 +54,8 @@ public class ServerRegisterModule  extends BaseModule{
         List<Permission> ps = new ArrayList<Permission>();
         Permission p = dao.fetch(Permission.class, 10);
         ps.add(p);
+        Permission p2 = dao.fetch(Permission.class, 14);
+        ps.add(p2);
         user.setPermissions(ps);
         dao.insertRelation(user, "permissions");
         return re.setv("ok", true).setv("data", user);
