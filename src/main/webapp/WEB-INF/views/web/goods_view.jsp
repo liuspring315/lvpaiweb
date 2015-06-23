@@ -32,7 +32,7 @@
 
                 <!-- 摄影师信息 -->
                 <div class="col-md-12 text-center">
-                    <h2>
+                    <h2>~
                         ${obj.userGeneralInfo.lastName}&nbsp;&nbsp;&nbsp;&nbsp;
                     </h2>
                     <p>
