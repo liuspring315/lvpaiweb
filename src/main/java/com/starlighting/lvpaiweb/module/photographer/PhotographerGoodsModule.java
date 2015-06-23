@@ -251,4 +251,12 @@ public class PhotographerGoodsModule extends BaseModule {
         }
         return profile.getAvatarSmall();
     }
+
+    @At
+    @Ok("jsp:views.photographer.editor_test")
+    public void editor_test(@Attr("me")UserGeneralInfo me) {
+
+    }
+
+
 }

@@ -223,6 +223,37 @@
         </div>
     </div>
 </div>
+<!-- /预订弹出框 -->
+<div class="modal fade" id="bs-booking" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><col-md- aria-hidden="true">×</col-md-></button>
+                <h4 class="modal-title" id="mySmallModalLabel">预订</h4>
+            </div>
+            <div class="modal-body">
+                <div class="login-box-body">
+                    <h3>普吉岛 四场景精品婚纱摄影</h3>
+                    <form action="../../index2.html" method="post">
+                        <div class="form-group has-feedback">
+                            <lable>选择拍摄预订日期</lable>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="form-group has-feedback">
+                            <lable>备注：200字以内，为了您的信息安全，请勿在此输入您的手机号码</lable>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">提交预订申请</button>
+                        </div>
+                    </div><!-- /.social-auth-links -->
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
 <jsp:include flush="true" page="/WEB-INF/views/include/footer.jsp"/>
 <form action="#" id="goods_query_form" method="post">
     <input type="hidden" name="pid" id="pid" value="${obj.id}"/>

@@ -38,16 +38,8 @@ public class PhotographerModule extends BaseModule {
     @GET
     @At
     @Ok("jsp:views.web.photographer_all")
-    public Object photographer_all(@Param("..")Pager pager) {
-        Condition cnd = Cnd.where("userType", "=", UserTypeEnum.PHOTOGRAPHER.getCode())
-                .and("registerCheckState", "=", RegisterCheckStateEnum.APPROVE_YES.getCode())
-//                .and("authenticationStat", "=", AuthenticationStatEnum.APPROVE_YES.getCode())
-                .desc("id");
-        QueryResult qr = new QueryResult();
-        List<UserGeneralInfo> userGeneralInfoList = dao.query(UserGeneralInfo.class, cnd, pager);
-        dao.fetchLinks(userGeneralInfoList, "dicPlace");
-        dao.fetchLinks(userGeneralInfoList, "photographerExtra");
-        return qr;
+    public void photographer_all() {
+
     }
 
     /**
@@ -97,7 +89,7 @@ public class PhotographerModule extends BaseModule {
     public Object queryPhotographerList(@Param("..")Pager pager) {
         Condition cnd = Cnd.where("userType", "=", UserTypeEnum.PHOTOGRAPHER.getCode())
                 .and("registerCheckState", "=", RegisterCheckStateEnum.APPROVE_YES.getCode())
-                .and("authenticationStat", "=", AuthenticationStatEnum.APPROVE_YES.getCode())
+//                .and("authenticationStat", "=", AuthenticationStatEnum.APPROVE_YES.getCode())
                 .desc("id");
         QueryResult qr = new QueryResult();
         qr.setList(dao.query(UserGeneralInfo.class, cnd, pager));

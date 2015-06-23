@@ -6,6 +6,11 @@
     <%@ include file="/WEB-INF/views/include/meta.jsp" %>
     <script type="text/javascript">
         $(function () {
+            $(document).keydown(function(event){
+                if(event.keyCode==13){
+                    $("#login_button").click();
+                }
+            });
             // 登陆
             $("#login_button").click(function () {
                 // 提交数据
