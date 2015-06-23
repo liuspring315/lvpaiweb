@@ -200,14 +200,15 @@
         <!-- Main content -->
         <section class="content">
             <!-- Small boxes (Stat box) -->
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box box-primary lvpaizhe-a-info-padding">
+
                         <div class="row">
-                            <div class="col-xs-4" id="div_place_tree">
+                            <div class="col-xs-2" id="div_place_tree">
                             </div>
-                            <div class="col-xs-6">
-                                <form class="form-horizontal" id="photographer_info_form"  role="form">
+                            <div class="col-xs-10">
+                                <form class="form-horizontal box box-primary" id="photographer_info_form"  role="form">
+                                    <div class="box-header">
+                                        第一步：添加地点
+                                    </div>
                                     <div class="form-group">
                                         <label for="placeName" class="col-sm-2 control-label">地点名称</label>
                                         <div class="col-sm-4">
@@ -236,7 +237,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="about" class="col-sm-2 control-label">关于这里</label>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-8">
                                               <textarea class="form-control" maxlength="250"
                                                         name="about" id="about" rows="4" placeholder="字数限制：***"></textarea>
                                         </div>
@@ -264,34 +265,34 @@
                                         <button type="button" id="delBtn" class="btn btn-primary">删除</button>
                                     </div>
                                 </form>
-                                <form action="${ctx}/manager/dicplace/avatar" id="avatar_form" method="post"
-                                      enctype="multipart/form-data">
+                                <form class="form-horizontal box box-primary" action="${ctx}/manager/dicplace/avatar" id="avatar_form" method="post" enctype="multipart/form-data">
+                                    <div class="box-header">
+                                        第二步：上传封面图片
+                                    </div>
                                     <div class="form-group">
-                                        <label for="oy" class="col-sm-2 control-label">头像</label>
+                                        <label for="oy" class="col-sm-2 control-label">封面图片</label>
                                         <div class="col-sm-4">
-                                            <img alt="用户头像" id="img_avatar" src="${base}/manager/dicplace/avatar">
+                                            <img alt="封面图片" id="img_avatar" src="${base}/manager/dicplace/avatar">
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <label for="oy" class="col-sm-2 control-label">修改头像文件</label>
+                                        <label for="oy" class="col-sm-2 control-label">上传封面图片</label>
                                         <div class="col-sm-4">
                                             <input type="hidden" name="id" id="avatarPlaceId"  value=""/>
                                             <input type="file" name="file">
                                         </div>
                                     </div>
-
                                     <div class="box-footer">
-
-                                        <button type="button"  id="avatarBtn" class="btn btn-primary">更新头像</button>
+                                        <button type="button"  id="avatarBtn" class="btn btn-primary">保存</button>
                                     </div>
-
                                 </form>
-                                <form action="${ctx}/manager/dicplace/avatararr" id="avatararr_form" method="post"
+                                <form class="form-horizontal box box-primary" action="${ctx}/manager/dicplace/avatararr" id="avatararr_form" method="post"
                                       enctype="multipart/form-data">
+                                    <div class="box-header">
+                                        第三步：上传地点页面四个小图
+                                    </div>
                                     <div class="form-group">
                                         <div class="col-sm-4" id="div_dicplacepic">
-
                                         </div>
                                         <label for="oy" class="col-sm-2 control-label">地点照片文件</label>
                                         <div class="col-sm-4">
@@ -304,15 +305,13 @@
                                     </div>
 
                                     <div class="box-footer">
-                                        <button type="button"  id="avatararrBtn" class="btn btn-primary">更新头像</button>
+                                        <button type="button"  id="avatararrBtn" class="btn btn-primary">保存</button>
                                     </div>
 
                                 </form>
                             </div>
                         </div>
-                    </div>
-                </div><!-- /.box -->
-            </div>
+
         </section>
     </div>
     </section><!-- /.content -->

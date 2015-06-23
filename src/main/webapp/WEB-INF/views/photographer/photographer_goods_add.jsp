@@ -41,7 +41,10 @@
         <section class="content">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-xs-12 box box-primary lvpaizhe-a-info-padding">
+                <div class="col-xs-12 box box-primary">
+                    <div class="box-header">
+                        第一步：填写服务基本信息
+                    </div>
                     <!-- form start -->
                     <form class="form-horizontal" method="post" id="goods_form">
                         <c:if test="${not empty obj}">
@@ -70,7 +73,11 @@
                                        class="form-control {validate:{required:true,trimstr:true,stringCheck:true,messages:{required:'请选择拍摄地'}}}"
                                        readonly id="placeName">
                                 <input type="hidden" name="place" id="place"  value="${obj.goodsInfo.place}">
-                                <button type="button" id="placeSelectBtn" class="btn btn-primary">选择</button>
+                            </div>
+                            <div class="col-sm-6">
+                                    <span class="help-block">
+                                    <button type="button" id="placeSelectBtn" class="btn btn-primary">选择</button>
+                                    </span>
                             </div>
                         </div>
                 <!-- 拍摄类型 -->
@@ -170,20 +177,25 @@
                             <button type="button" id="goodsSubmitBtn" class="btn btn-primary">保存</button>
                         </div>
                     </form>
-                    <form action="${ctx}/photographer/goods/avatararr" id="avatararr_form" method="post"
+                </div>
+                <div class="col-xs-12 box box-primary">
+                    <div class="box-header">
+                        第二步：上传样片
+                    </div>
+                    <form class="form-horizontal" action="${ctx}/photographer/goods/avatararr" id="avatararr_form" method="post"
                           enctype="multipart/form-data">
-                    <div class="form-group">
-                        <div class="col-md-2 col-md-offset-2">
-                            <input type="hidden" name="id" value="${obj.goodsInfo.id}"/>
-                            <input type="file" name="file">
-                            <input type="file" name="file">
-                            <input type="file" name="file">
-                            <input type="file" name="file">
+                        <div class="form-group">
+                            <div class="col-md-6 ">
+                                <input type="hidden" name="id" value="${obj.goodsInfo.id}"/>
+                                <input type="file" name="file">
+                                <input type="file" name="file">
+                                <input type="file" name="file">
+                                <input type="file" name="file">
+                            </div>
                         </div>
                         <div class="box-footer">
-                            <button type="submit"  id="avatararrBtn" class="btn btn-primary">更新头像</button>
+                            <button type="submit"  id="avatararrBtn" class="btn btn-primary">保存</button>
                         </div>
-                    </div>
                     </form>
                     <!-- 样片上传 -->
                     <div class="form-group">
