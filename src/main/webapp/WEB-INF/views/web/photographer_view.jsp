@@ -14,7 +14,7 @@
     <!-- 摄影师头像及基本信息 -->
     <div class="row">
         <div class="col-md-2">
-            <img alt="140x140" src="${ctx}/web/avatar?id=${obj.id}" class="img-rounded" />
+            <img alt="140x140" style="width: 180px;height:180px" src="${ctx}/web/avatar?id=${obj.id}" class="img-rounded" />
         </div>
         <div class="col-md-10">
             <div class="row">

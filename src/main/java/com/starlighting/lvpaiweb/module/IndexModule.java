@@ -32,7 +32,7 @@ public class IndexModule extends BaseModule {
     }
 
     @GET
-    @At("/login")
+    @At({"/login", "/user/login"})
     @Ok("jsp:views.user.login")
     public void loginPage() {}
 

@@ -20,7 +20,7 @@ public class GoodsInfo  extends BasePojo{
      */
     @Id
     @Column("id")
-    private Integer id;
+    private Integer id = 0;
     /**
      * 摄影师标识
      */
