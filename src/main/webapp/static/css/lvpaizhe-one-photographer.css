@@ -48,3 +48,7 @@
 	line-height: 32px;
 }
 
+.big-avatar {
+    height: 180px;
+    width: 180px;
+}

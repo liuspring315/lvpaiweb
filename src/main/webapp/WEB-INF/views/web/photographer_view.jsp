@@ -5,6 +5,7 @@
 <head>
     <%@ include file="/WEB-INF/views/include/meta.jsp" %>
     <script src="${resourceUrl}/js/pager.js"></script>
+    <link href="${resourceUrl}/css/lvpaizhe-one-photographer.css" rel="stylesheet">
 </head>
 
 <body>
@@ -14,7 +15,7 @@
     <!-- 摄影师头像及基本信息 -->
     <div class="row">
         <div class="col-md-2">
-            <img alt="140x140" src="${ctx}/web/avatar?id=${obj.id}" class="img-rounded" />
+            <img alt="140x140" src="${ctx}/web/avatar?id=${obj.id}" class="img-rounded big-avatar" />
         </div>
         <div class="col-md-10">
             <div class="row">
