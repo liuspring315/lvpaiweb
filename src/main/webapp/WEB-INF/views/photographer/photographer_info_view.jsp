@@ -152,7 +152,7 @@
                                         <label for="inputLocation" class="col-sm-2 control-label">所在地</label>
                                         <div class="col-sm-4">
                                             <input type="text" class="form-control" readonly id="inputLocation" value="${me.dicPlace.placeName}">
-                                            <input type="hidden" name="location" id="location">
+                                            <input type="hidden" name="location" id="location" value="${me.dicPlace.id}">
                                             <button type="button" id="placeSelectBtn" class="btn btn-primary">选择</button>
                                         </div>
                                         <div class="col-sm-6">

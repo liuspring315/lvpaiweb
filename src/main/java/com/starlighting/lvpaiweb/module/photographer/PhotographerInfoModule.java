@@ -59,6 +59,11 @@ public class PhotographerInfoModule extends BaseModule {
     @Inject("java:$config.get('img.big.h')")
     private int imgBigHeight;
 
+    @Inject("java:$config.get('img.avata.w')")
+    private int imgAvataWidth;
+    @Inject("java:$config.get('img.avata.h')")
+    private int imgAvataHeight;
+
     @RequiresPermissions("photographer:info:view")
     @At
     @Ok("jsp:views.photographer.photographer_info_view")
@@ -112,6 +117,7 @@ public class PhotographerInfoModule extends BaseModule {
         me.setBirthday(userGeneralInfo.getBirthday());
         me.setLocation(userGeneralInfo.getLocation());
         me.setAuthenticationStat(AuthenticationStatEnum.WAIT_APPROVE.getCode());
+
         dao.fetchLinks(me,"dicPlace");
         dao.fetchLinks(me,"photographerExtra");
         return new NutMap().setv("ok", true);
@@ -134,9 +140,9 @@ public class PhotographerInfoModule extends BaseModule {
             UserGeneralInfo userGeneralInfo = dao.fetch(UserGeneralInfo.class, me.getId());
             try {
                 BufferedImage image = Images.read(tf.getFile());
-                image = Images.zoomScale(image, imgSmallWidth, imgSmallHeight, Color.WHITE);
+                image = Images.zoomScale(image, imgAvataWidth, imgAvataHeight, Color.WHITE);
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
-                Images.writeJpeg(image, out, 0.8f);
+                Images.writeJpeg(image, out, 1.0f);
                 userGeneralInfo.setHeadThumb(out.toByteArray());
 
                 dao.update(userGeneralInfo, "^headThumb$");
@@ -188,19 +194,19 @@ public class PhotographerInfoModule extends BaseModule {
                     BufferedImage image = Images.read(tf.getFile());
                     image = Images.zoomScale(image, imgSmallWidth, imgSmallHeight, Color.WHITE);
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    Images.writeJpeg(image, out, 0.8f);
+                    Images.writeJpeg(image, out, 1.0f);
                     photographerExtra.setAvatarSmall(out.toByteArray());
 
                     image = Images.read(tf.getFile());
                     image = Images.zoomScale(image, imgMediumWidth, imgMediumHeight, Color.WHITE);
                     out = new ByteArrayOutputStream();
-                    Images.writeJpeg(image, out, 0.8f);
+                    Images.writeJpeg(image, out, 1.0f);
                     photographerExtra.setAvatarMedium(out.toByteArray());
 
                     image = Images.read(tf.getFile());
                     image = Images.zoomScale(image, imgBigHeight, imgBigHeight, Color.WHITE);
                     out = new ByteArrayOutputStream();
-                    Images.writeJpeg(image, out, 0.8f);
+                    Images.writeJpeg(image, out, 1.0f);
                     photographerExtra.setAvatarBig(out.toByteArray());
 
                     dao.update(photographerExtra, "^avatar|avatarMedium|avatarBig$");

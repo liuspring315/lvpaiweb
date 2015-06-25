@@ -72,36 +72,7 @@
         "image": function(locale, options) {
             var size = (options && options.size) ? ' btn-'+options.size : '';
             return "<li>" +
-                "<div class='bootstrap-wysihtml5-insert-image-modal modal fade'>" +
-                "<div class='modal-dialog'>"+
-                "<div class='modal-content'>"+
-                "<div class='modal-header'>" +
-                "<a class='close' data-dismiss='modal'>&times;</a>" +
-                "<h4>" + locale.image.insert + "</h4>" +
-                "</div>" +
-                "<div class='modal-body'>" +
-                "<h4>上传图片</h4>" +
-				  "<form name='photo' id='imageUploadForm' enctype='multipart/form-data' action='"+ctx+"/photographer/goods/upload/upload_image' method='post'>" +
-                "<input type='file' id='imageBrowse' name='image1' size='30'/>" +
-                "<button type='button' class='btn btn-default' id='btnImageBrowse'>单击这里上传一张图片</button>" +
-                "</form>" +
-                "<div class='progress'>" +
-                "<div class='progress-bar' id='imageProgressBar' role='progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width: 0%;'>" +
-                "</div>" +
-                "</div>" +
-                "<hr>" +
-                "<div class='imageLink'>" +
-                "<h4>On insert the link of a online image.</h4>" +
-                "<input value='http://' class='bootstrap-wysihtml5-insert-image-url form-control'>" +
-                "</div>" +
-                "</div>" +
-                "<div class='modal-footer'>" +
-                "<button class='btn btn-default' data-dismiss='modal'>" + locale.image.cancel + "</button>" +
-                "<button class='btn btn-primary' data-dismiss='modal'>" + locale.image.insert + "</button>" +
-                "</div>" +
-                "</div>" +
-                "</div>" +
-                "</div>" +
+
                 "<a class='btn btn-" + size + " btn-default' data-wysihtml5-command='insertImage' title='" + locale.image.insert + "' tabindex='-1'><i class='glyphicon glyphicon-picture'></i></a>" +
                 "</li>";
         },
@@ -192,6 +163,41 @@
                 'style': "display:none"
             });
             var culture = options.locale || defaultOptions.locale || "en";
+
+            $("body").append(
+                "<div class='bootstrap-wysihtml5-insert-image-modal modal fade'>" +
+                "<div class='modal-dialog'>"+
+                "<div class='modal-content'>"+
+                "<div class='modal-header'>" +
+                "<a class='close' data-dismiss='modal'>&times;</a>" +
+                "<h4>图片上传</h4>" +
+                "</div>" +
+                "<div class='modal-body'>" +
+                "<h4>上传图片</h4>" +
+                "<form name='photo' id='imageUploadForm' enctype='multipart/form-data' action='"+ctx+"/photographer/goods/upload/upload_image' method='post'>" +
+                "<input type='file' id='imageBrowse' name='image1' size='30'/>" +
+                "<button type='button' class='btn btn-default' id='btnImageBrowse'>单击这里上传一张图片</button>" +
+                "</form>" +
+                "<div class='progress'>" +
+                "<div class='progress-bar' id='imageProgressBar' role='progressbar' aria-valuenow='60' aria-valuemin='0' aria-valuemax='100' style='width: 0%;'>" +
+                "</div>" +
+                "</div>" +
+                "<hr>" +
+                "<div class='imageLink'>" +
+                "<h4>On insert the link of a online image.</h4>" +
+                "<input value='http://' class='bootstrap-wysihtml5-insert-image-url form-control'>" +
+                "</div>" +
+                "</div>" +
+                "<div class='modal-footer'>" +
+                "<button class='btn btn-default' data-dismiss='modal'>取消</button>" +
+                "<button class='btn btn-primary' data-dismiss='modal'>插入</button>" +
+                "</div>" +
+                "</div>" +
+                "</div>" +
+                "</div>"
+            );
+
+
             for(var key in defaultOptions) {
                 var value = false;
 
@@ -239,7 +245,6 @@
             });
 
             this.el.before(toolbar);
-
             return toolbar;
         },
 
@@ -252,12 +257,12 @@
 
         initInsertImage: function(toolbar) {
 				var self = this;
-				var insertImageModal = toolbar.find('.bootstrap-wysihtml5-insert-image-modal');
+				var insertImageModal = $('.bootstrap-wysihtml5-insert-image-modal');
 				var urlInput = insertImageModal.find('.bootstrap-wysihtml5-insert-image-url');
 				var insertButton = insertImageModal.find('.btn-primary');
 				var initialValue = urlInput.val();
 				var caretBookmark;
-				var uploadForm = insertImageModal.find('form#imageUploadForm');
+				var uploadForm = $('form#imageUploadForm');
 				var imageProgressBar = insertImageModal.find('#imageProgressBar');
 				
 				var insertImage = function() {
@@ -319,7 +324,7 @@
 						return true;
 					}
 				});
-				toolbar.find('#imageUploadForm').on('submit',(function(e) {
+				$('#imageUploadForm').on('submit',(function(e) {
 					e.preventDefault();
 					var formData = new FormData(this);
 					
@@ -374,12 +379,12 @@
 				}));
 				
 				
-				toolbar.find("button#btnImageBrowse").on("click", function(event) {
+				$("button#btnImageBrowse").on("click", function(event) {
 					event.stopPropagation();
 					$(this).siblings('#imageBrowse').click();
 				});
 				
-				toolbar.find("#imageBrowse").on("change", function() {
+				$("#imageBrowse").on("change", function() {
 					imageProgressBar.css("width", "0").html("");
 					uploadForm.submit();
 				});

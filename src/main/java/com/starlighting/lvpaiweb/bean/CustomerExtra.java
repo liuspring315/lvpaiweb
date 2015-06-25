@@ -14,7 +14,7 @@ public class CustomerExtra  extends BasePojo{
 	/**
 	 * 会员标识
 	 */
-	@Id
+	@Id(auto=false)
 	@Column("user_general_info_id")
 	private Integer userGeneralInfoId;
 	/**

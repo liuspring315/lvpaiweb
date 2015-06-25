@@ -13,7 +13,7 @@ public class PhotographerExtra  extends BasePojo{
 	/**
 	 * 主键
 	 */
-	@Id
+	@Id(auto=false)
 	@Column("user_general_info_id")
 	private Integer userGeneralInfoId;
 
