@@ -59,6 +59,9 @@ public class PhotographerGoodsModule extends BaseModule {
     @Inject("java:$config.get('img.big.h')")
     private int imgBigHeight;
 
+    @Inject("java:$config.get('img.path')")
+    private String imgPath;
+
     @At
     @Ok("jsp:views.photographer.photographer_goods_list")
     public Object list(@Attr("me")UserGeneralInfo me) {
@@ -126,7 +129,7 @@ public class PhotographerGoodsModule extends BaseModule {
 //            return 0;//未申请认证不允许提交拍摄服务
 //        }
         Date now = new Date();
-        if(goodsInfo.getId() == 0){
+        if(goodsInfo.getId() == null){
 
             goodsInfo.setCreateTime(now);
             goodsInfo.setUpdateTime(now);
@@ -256,6 +259,42 @@ public class PhotographerGoodsModule extends BaseModule {
     @Ok("jsp:views.photographer.editor_test")
     public void editor_test(@Attr("me")UserGeneralInfo me) {
 
+    }
+
+
+
+
+
+
+
+
+    @RequiresUser
+    @AdaptBy(type=UploadAdaptor.class, args={"${app.root}/WEB-INF/tmp/user_avatar", "8192", "utf-8", "20000000", "102400000"})
+    @POST
+    @Ok("json")
+    @At("/upload/upload_image")
+    public ImageData uploadTempImage(@Attr("me")UserGeneralInfo me,HttpServletRequest request,
+                               @Param("image1")TempFile tf,AdaptorErrorContext err) {
+
+        ImageData imageData = new ImageData();
+        try {
+            BufferedImage image = Images.read(tf.getFile());
+            String fileName = me.getId()+"_"+ new Date().getTime();
+            Images.writeJpeg(image, new File(imgPath+fileName + ".jpg"), 0.9f);
+
+            imageData.setName(fileName);
+            imageData.setPath(request.getContextPath()+"/web/images/"+fileName);
+
+        } catch(DaoException e) {
+            log.error("System Error", e);
+            imageData.setMsg("系统错误");
+        } catch (Throwable e) {
+            log.error("System Error", e);
+            imageData.setMsg("图片格式错误");
+        }
+
+
+        return imageData;
     }
 
 
