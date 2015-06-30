@@ -127,25 +127,12 @@
                             <label>提供服务</label>
                         </div>
                         <div class="col-md-10">
+                            <c:forEach var="project" items="${obj.goodsInfo.dicProjects}">
                             <label class="lvpaizhe-servers">
-                                <span class="fa fa-fw fa-truck"></span>当地用车
+                                <span class="${project.projectIco}"></span>${project.projectName}
                             </label>
+                            </c:forEach>
 
-                            <label class="lvpaizhe-servers">
-                                <span class="fa fa-fw fa-female"></span>服装
-                            </label>
-
-                            <label class="lvpaizhe-servers">
-                                <span class="glyphicon glyphicon-facetime-video"></span>&nbsp;视频
-                            </label>
-
-                            <label class="lvpaizhe-servers">
-                                <span class="glyphicon glyphicon-scissors"></span>&nbsp;化妆造型
-                            </label>
-
-                            <label class="lvpaizhe-servers">
-                                <span class="glyphicon glyphicon-bed"></span>&nbsp;酒店
-                            </label>
                         </div>
                         </p>
                     </div>
@@ -169,14 +156,14 @@
                             </div>
                         </div>
                         <div class="col-md-2 text-center lvpaizhe-booking-btn">
-                            <a href="#" class="btn btn-primary" role="button" data-toggle="modal" data-target="#bs-booking">马上预订</a>
+                            <a href="#" class="btn btn-primary" role="button">马上预订</a>
                         </div>
                     </div>
 
                     <!-- 自定义服务内容展示 -->
                     <div class="row">
                         <div class="col-md-12 text-center">
-                            <img src="${resourceUrl}/img/aaa.jpg">
+                            ${obj.goodsInfo.goodsDesc}
                         </div>
                     </div>
 
@@ -233,15 +220,15 @@
             </div>
             <div class="modal-body">
                 <div class="login-box-body">
-                    <h3>普吉岛 四场景精品婚纱摄影</h3>
-                    <form action="../../index2.html" method="post">
+                    <h3 id="h3_title">${obj.goodsInfo.goodsName}</h3>
+                    <form action="" method="post">
                         <div class="form-group has-feedback">
                             <lable>选择拍摄预订日期</lable>
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" id="fixDate">
                         </div>
                         <div class="form-group has-feedback">
                             <lable>备注：200字以内，为了您的信息安全，请勿在此输入您的手机号码</lable>
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" rows="3"  id="orderRemark"></textarea>
                         </div>
                     </form>
                     <div class="modal-footer">
@@ -260,7 +247,9 @@
 </form>
 <script type="text/javascript">
     $(document).ready(function() {
-
+        $(".btn-primary").click(function(){
+            $("#bs-booking").modal('show');
+        });
     });//end ready
 
 

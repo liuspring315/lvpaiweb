@@ -283,7 +283,10 @@ public class PhotographerGoodsModule extends BaseModule {
             Images.writeJpeg(image, new File(imgPath+fileName + ".jpg"), 0.9f);
 
             imageData.setName(fileName);
-            imageData.setPath(request.getContextPath()+"/web/images/"+fileName);
+            String path = request.getScheme() + "://" + request.getServerName()
+                    + ":" + request.getServerPort() + request.getContextPath()
+                    + "/";
+            imageData.setPath(path+"web/images/"+fileName);
 
         } catch(DaoException e) {
             log.error("System Error", e);

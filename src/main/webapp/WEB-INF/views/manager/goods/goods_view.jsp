@@ -3,13 +3,13 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/include/manager/meta.jsp" %>
-
+    <link rel="stylesheet" type="text/css" href="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+    <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
+    <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.js" type="text/javascript"></script>
+    <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js" type="text/javascript"></script>
     <script src="${resourceUrl}/manager/plugins/jQuery/jquery.validate.js" type="text/javascript"></script>
     <script src="${resourceUrl}/manager/plugins/jQuery/jquery.metadata.js" type="text/javascript"></script>
-    <script type="text/javascript" src="${resourceUrl}/manager/ueditor/ueditor.config.js"></script>
-    <!-- 编辑器源码文件 -->
-    <script type="text/javascript" src="${resourceUrl}/manager/ueditor/ueditor.all.js"></script>
-    <!-- 实例化编辑器 -->
+
 
 </head>
 <body class="skin-blue">
@@ -138,7 +138,11 @@
                         <div class="form-group">
                             <label for="goodsDesc" class="col-sm-2 control-label">详细介绍</label>
                             <div class="col-sm-8">
-                                <textarea id="goodsDesc" name="goodsDesc" class="form-control" rows="4">${obj.goodsInfo.goodsDesc}</textarea>
+                                <textarea id="goodsDesc" name="goodsDesc" class="form-control"
+                                          placeholder="Enter text ..."
+                                          style="width: 100%; height: 500px; font-size: 14px; line-height: 18px;">
+                                          ${obj.goodsInfo.goodsDesc}
+                                </textarea>
                             </div>
                         </div>
 
@@ -189,8 +193,7 @@
         $("#projectChk${project.id}").prop("checked",true);
         </c:forEach>
         </c:if>
-        <!-- 实例化编辑器，content对应上面的id，与官方例子相比这里定制了工具栏，初始化编辑器高度为500 -->
-//        var ue = UE.getEditor('goodsDesc', {});
+        $('#goodsDesc').wysihtml5({locale: "zh-CN"});
     });//end ready
 
 </script>

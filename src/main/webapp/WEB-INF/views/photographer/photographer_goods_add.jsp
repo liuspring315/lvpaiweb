@@ -3,17 +3,10 @@
 <html>
 <head>
         <%@ include file="/WEB-INF/views/include/manager/meta.jsp" %>
-    <%--<link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css" /> <!-- Please use the newest Version of Bootstrap 3.0.X -->--%>
-    <link rel="stylesheet" type="text/css" href="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+   <link rel="stylesheet" type="text/css" href="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
     <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
-    <%--<script src="lib/js/jquery-1.7.2.min.js" type="text/javascript"></script>--%>
-    <%--<script src="lib/js/bootstrap.min.js" type="text/javascript"></script>--%>
-    <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.js" type="text/javascript"></script>
-
-        <%--<link rel="stylesheet" type="text/css" href="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />--%>
-        <%--<script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>--%>
-        <%--<script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.js" type="text/javascript"></script>--%>
-        <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js" type="text/javascript"></script>
+  <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.js" type="text/javascript"></script>
+     <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js" type="text/javascript"></script>
     <script src="${resourceUrl}/manager/plugins/jQuery/jquery.validate.js" type="text/javascript"></script>
     <script src="${resourceUrl}/manager/plugins/jQuery/jquery.metadata.js" type="text/javascript"></script>
 
@@ -174,7 +167,11 @@
                         <div class="form-group">
                             <label for="goodsDesc" class="col-sm-2 control-label">详细介绍</label>
                             <div class="col-sm-8 adv-textarea">
-                                <textarea id="goodsDesc" htmlEdit="1" name="goodsDesc" class="form-control" rows="4">${obj.goodsInfo.goodsDesc}</textarea>
+                                <textarea id="goodsDesc" htmlEdit="1" name="goodsDesc" class="form-control"
+                                          placeholder="Enter text ..." style="width: 100%; height: 500px; font-size: 14px; line-height: 18px;">
+
+                                    ${obj.goodsInfo.goodsDesc}
+                                </textarea>
                             </div>
                         </div>
                         <div class="box-footer">
@@ -290,7 +287,8 @@
         $("#projectChk${project.id}").prop("checked",true);
         </c:forEach>
         </c:if>
-        $('#goodsDesc').wysihtml5({"stylesheets": ["${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5-color.css"],locale: "zh-CN"});
+        $('#goodsDesc').wysihtml5({locale: "zh-CN"});
+
     });//end ready
     function placeCallback(id,placeName){
         $("#placeName").val(placeName);
