@@ -81,7 +81,7 @@
                 <!-- 头像及简介 -->
                 <div class="row">
                     <div class="col-sm-4 lvpaizhe-photographer-avatar">
-                        <img class="img-circle" src="{ctx}/web/avatar?id=${photographer.id}" alt="..." width="80" height="80">
+                        <img class="img-circle" src="${ctx}/web/avatar?id=${photographer.id}" alt="..." width="80" height="80">
                     </div>
                     <div class="col-sm-8">
                         <table class="lvpaizhe-photographer-table">

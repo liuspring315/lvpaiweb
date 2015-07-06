@@ -26,7 +26,7 @@ import java.util.Map;
  */
 @IocBean // 声明为Ioc容器中的一个Bean
 @At("/web/place")
-public class PlaceModule extends BaseModule {
+public class WebPlaceModule extends BaseModule {
 
     /**
      * 显示地点首页
@@ -82,7 +82,7 @@ public class PlaceModule extends BaseModule {
 
         Condition cnd = Cnd.where("userType", "=", UserTypeEnum.PHOTOGRAPHER.getCode())
                 .and("registerCheckState", "=", RegisterCheckStateEnum.APPROVE_YES.getCode())
-                .and("authenticationStat", "=", AuthenticationStatEnum.APPROVE_YES.getCode())
+//                .and("authenticationStat", "=", AuthenticationStatEnum.APPROVE_YES.getCode())
                 .and("location","=",dicPlace.getId())
                 .desc("id");
         pager.setPageSize(4);
