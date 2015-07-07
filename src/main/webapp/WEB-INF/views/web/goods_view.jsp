@@ -27,12 +27,12 @@
             <div class="row">
                 <!-- 头像 -->
                 <div class="col-md-12">
-                    <img alt="140x140" src="${ctx}/web/avatar?id=${obj.userGeneralInfo.id}" class="img-rounded" />
+                    <img alt="140x140" src="${ctx}/web/avatar?id=${obj.userGeneralInfo.id}" class="img-rounded big-avatar" />
                 </div>
 
                 <!-- 摄影师信息 -->
                 <div class="col-md-12 text-center">
-                    <h2>~
+                    <h2>
                         ${obj.userGeneralInfo.lastName}&nbsp;&nbsp;&nbsp;&nbsp;
                     </h2>
                     <p>
@@ -254,5 +254,8 @@
 
 
 </script>
+<!-- 分享控件 来自http://www.jiathis.com/getcode/tool -->
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+
 </body>
 </html>

@@ -79,7 +79,7 @@
             <div class="tabbable" id="tabs">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a data-toggle="tab" href="#goods">摄影服务</a>
+                        <a data-toggle="tab" href="#div_goods">摄影服务</a>
                     </li>
                     <li>
                         <a data-toggle="tab" href="#pics">作品展示</a>
@@ -209,5 +209,11 @@
 <form action="${ctx}/web/goods/view" id="goods_view_form" method="post">
     <input type="hidden" name="id" id="goodsid" value=""/>
 </form>
+<!-- 分享控件 来自http://www.jiathis.com/getcode/tool -->
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- photoswipe 之前先引用klass,如果需要提高加载速度,可以给 script 加上 defer 标记/属性-->
+<script type="text/javascript" src="klass.min.js"></script>
+<!-- 重要提示,如果不使用jQuery版本，在IE下面会出错，当然，使用jQuery版本，则需要引入jQuery-->
+<script type="text/javascript" src="code.photoswipe-3.0.5.min.js"></script>
 </body>
 </html>
