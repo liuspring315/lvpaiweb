@@ -221,19 +221,21 @@
             <div class="modal-body">
                 <div class="login-box-body">
                     <h3 id="h3_title">${obj.goodsInfo.goodsName}</h3>
-                    <form action="" method="post">
+                    <form action="${ctx}/cstmr/order/add" method="post" id="orderForm">
+                        <input type="hidden" name="uid" value="${obj.userGeneralInfo.id}"/>
+                        <input type="hidden" name="gid" value="${obj.goodsInfo.id}"/>
                         <div class="form-group has-feedback">
                             <lable>选择拍摄预订日期</lable>
-                            <input type="date" class="form-control" id="fixDate">
+                            <input type="date" class="form-control" name="fixDate" id="fixDate">
                         </div>
                         <div class="form-group has-feedback">
                             <lable>备注：200字以内，为了您的信息安全，请勿在此输入您的手机号码</lable>
-                            <textarea class="form-control" rows="3"  id="orderRemark"></textarea>
+                            <textarea class="form-control" rows="3"  id="orderRemark" name="orderRemark"></textarea>
                         </div>
                     </form>
                     <div class="modal-footer">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">提交预订申请</button>
+                            <button type="button" id="submitOrderBtn" class="btn btn-primary btn-block btn-flat">提交预订申请</button>
                         </div>
                     </div><!-- /.social-auth-links -->
                 </div>
@@ -242,13 +244,20 @@
     </div><!-- /.modal-dialog -->
 </div>
 <jsp:include flush="true" page="/WEB-INF/views/include/footer.jsp"/>
-<form action="#" id="goods_query_form" method="post">
-    <input type="hidden" name="pid" id="pid" value="${obj.id}"/>
-</form>
 <script type="text/javascript">
     $(document).ready(function() {
         $(".btn-primary").click(function(){
             $("#bs-booking").modal('show');
+        });
+        $("#submitOrderBtn").click(function(){
+            if(confirm("确认提交预订？")){
+                if($("#fixDate").val()==""){
+                    alert("请填写预订日期");
+                    return;
+                }
+                $("#orderForm").submit();
+            }
+
         });
     });//end ready
 

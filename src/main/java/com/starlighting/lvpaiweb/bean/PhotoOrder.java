@@ -32,6 +32,11 @@ public class PhotoOrder  extends BasePojo{
 	private Integer cstmrId;
 
 
+    /**
+     *  商品ID
+     */
+    @Column("goods_id")
+    private Integer goodsId;
 
 	/**
 	 * 标题
@@ -39,67 +44,12 @@ public class PhotoOrder  extends BasePojo{
 	@Column("goods_name")
 	private String goodsName;
 
-	/**
-	 * 拍摄地
-	 */
-	@Column("place")
-	private Integer place;
-
 
 	/**
-	 * 拍摄类型
+	 * 预约日期
 	 */
-	@Column("photo_type")
-	private String photoType;
-
-
-	/**
-	 * 总价格
-	 */
-	@Column("total_price")
-	private Long totalPrice;
-
-	/**
-	 * 预付款
-	 */
-	@Column("advance_payment")
-	private Long advancePayment;
-	/**
-	 * 原片数量
-	 */
-	@Column("original_num")
-	private Integer originalNum;
-
-	/**
-	 * 精修数量
-	 */
-	@Column("processing_num")
-	private Integer processingNum;
-
-
-	/**
-	 * 提供项目
-	 */
-	@ManyMany(from="g_id", relation="goods_project", target=DicProject.class, to="project_id")
-	protected List<DicProject> dicProjects;
-
-
-	/**
-	 * 产品介绍
-	 */
-	@Column("goods_desc")
-    @ColDefine(type = ColType.TEXT)
-	private String goodsDesc;
-	/**
-	 *  起始日期
-	 */
-	@Column("photo_begin_date")
-	private java.util.Date photoBeginDate;
-	/**
-	 * 结束日期
-	 */
-	@Column("photo_end_date")
-	private java.util.Date photoEndDate;
+	@Column("order_fix_date")
+	private java.util.Date orderFixDate;
 
 	/**
 	 * 订单状态
@@ -119,8 +69,7 @@ public class PhotoOrder  extends BasePojo{
 	@One(target=UserGeneralInfo.class, field="cstmrId", key="id")
 	protected UserGeneralInfo cstmrInfo;
 
-	@One(target=DicPlace.class, field="place", key="id")
-	protected DicPlace dicPlace;
+
 
 	public Integer getId() {
 		return id;
@@ -154,87 +103,24 @@ public class PhotoOrder  extends BasePojo{
 		this.goodsName = goodsName;
 	}
 
-	public Integer getPlace() {
-		return place;
-	}
 
-	public void setPlace(Integer place) {
-		this.place = place;
-	}
+    public Integer getGoodsId() {
+        return goodsId;
+    }
 
-	public String getPhotoType() {
-		return photoType;
-	}
+    public void setGoodsId(Integer goodsId) {
+        this.goodsId = goodsId;
+    }
 
-	public void setPhotoType(String photoType) {
-		this.photoType = photoType;
-	}
+    public Date getOrderFixDate() {
+        return orderFixDate;
+    }
 
-	public Long getTotalPrice() {
-		return totalPrice;
-	}
+    public void setOrderFixDate(Date orderFixDate) {
+        this.orderFixDate = orderFixDate;
+    }
 
-	public void setTotalPrice(Long totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
-	public Long getAdvancePayment() {
-		return advancePayment;
-	}
-
-	public void setAdvancePayment(Long advancePayment) {
-		this.advancePayment = advancePayment;
-	}
-
-	public Integer getOriginalNum() {
-		return originalNum;
-	}
-
-	public void setOriginalNum(Integer originalNum) {
-		this.originalNum = originalNum;
-	}
-
-	public Integer getProcessingNum() {
-		return processingNum;
-	}
-
-	public void setProcessingNum(Integer processingNum) {
-		this.processingNum = processingNum;
-	}
-
-	public List<DicProject> getDicProjects() {
-		return dicProjects;
-	}
-
-	public void setDicProjects(List<DicProject> dicProjects) {
-		this.dicProjects = dicProjects;
-	}
-
-	public String getGoodsDesc() {
-		return goodsDesc;
-	}
-
-	public void setGoodsDesc(String goodsDesc) {
-		this.goodsDesc = goodsDesc;
-	}
-
-	public Date getPhotoBeginDate() {
-		return photoBeginDate;
-	}
-
-	public void setPhotoBeginDate(Date photoBeginDate) {
-		this.photoBeginDate = photoBeginDate;
-	}
-
-	public Date getPhotoEndDate() {
-		return photoEndDate;
-	}
-
-	public void setPhotoEndDate(Date photoEndDate) {
-		this.photoEndDate = photoEndDate;
-	}
-
-	public Integer getOrderStat() {
+    public Integer getOrderStat() {
 		return orderStat;
 	}
 
@@ -266,11 +152,4 @@ public class PhotoOrder  extends BasePojo{
 		this.cstmrInfo = cstmrInfo;
 	}
 
-	public DicPlace getDicPlace() {
-		return dicPlace;
-	}
-
-	public void setDicPlace(DicPlace dicPlace) {
-		this.dicPlace = dicPlace;
-	}
 }
