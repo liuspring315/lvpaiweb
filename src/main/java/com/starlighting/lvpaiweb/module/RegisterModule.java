@@ -67,10 +67,7 @@ public class RegisterModule  extends BaseModule{
             if (count != 0) {
                 return "email已经存在";
             }
-            count = dao.count(UserGeneralInfo.class, Cnd.where("mobile", "=", user.getMobile()));
-            if (count != 0) {
-                return "移动电话已经存在";
-            }
+
         } else {
             if (user.getId() < 1) {
                 return "用户Id非法";

@@ -14,6 +14,8 @@ import org.nutz.mvc.annotation.Ok;
 import org.nutz.mvc.annotation.Param;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @功能说明：客户订单
@@ -28,8 +30,8 @@ public class CstmrOrderModule extends BaseModule {
 
     @RequiresUser
     @At("/add")
-    @Ok("jsp:views.manager.user.authority_users_list")
-    public void add(@Param("gid")int gid,@Param("uid")int uid,@Param("fixDate")Date fixDate,
+    @Ok("jsp:views.web.cstmr.order_info")
+    public Object add(@Param("gid")int gid,@Param("uid")int uid,@Param("fixDate")Date fixDate,
                     @Param("orderRemark")String orderRemark,
                     @Attr("me")UserGeneralInfo me) {
         UserGeneralInfo userGeneralInfo = dao.fetch(UserGeneralInfo.class,uid);
@@ -63,6 +65,12 @@ public class CstmrOrderModule extends BaseModule {
         photoOrder.setOrderFixDate(fixDate);
         photoOrder.setGoodsId(gid);
         dao.insert(photoOrder);
+
+        Map obj = new HashMap<String,Object>();
+        obj.put("goodsInfo",goodsInfo);
+        obj.put("userGeneralInfo",userGeneralInfo);
+        return obj;
+
 
     }
 }

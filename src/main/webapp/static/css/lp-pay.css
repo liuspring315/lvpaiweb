@@ -1,0 +1,35 @@
+/*支付页面专用样式表
+2015-07-09
+雅痞*/
+
+.order_square {
+	padding: 20px;
+	border: solid 1px #FFCC99;
+	background-color: #FFFFCC;
+	color: #CC6600;
+	font-size: 20px;
+}
+
+.price {
+	font-size: 36px;
+	color: red;
+}
+
+.pay_method {
+	font-size: 18px;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.pay_pic_margin {
+	margin-right: 15px;
+	margin-left: 5px;
+	margin-top: 5px;
+	border: solid 1px #CCCCCC;
+	border-radius: 3px;
+}
+
+.next {
+	margin: 30px;
+	text-align: center;
+}
