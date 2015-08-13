@@ -2,6 +2,7 @@ package com.starlighting.lvpaiweb.module.photographer;
 
 import com.starlighting.lvpaiweb.bean.*;
 import com.starlighting.lvpaiweb.module.BaseModule;
+import com.starlighting.lvpaiweb.service.ImageService;
 import com.starlighting.lvpaiweb.util.Toolkit;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.aop.interceptor.ioc.TransAop;
@@ -44,6 +45,8 @@ import java.util.List;
 public class PhotographerGoodsModule extends BaseModule {
     private static final Log log = Logs.get();
 
+    @Inject
+    ImageService imageService;
     @Inject("java:$config.get('img.small.w')")
     private int imgSmallWidth;
     @Inject("java:$config.get('img.small.h')")
@@ -248,11 +251,12 @@ public class PhotographerGoodsModule extends BaseModule {
     @At("/pic_avatar_small")
     @GET
     public Object pic_avatar_small(@Param("id")long picId, HttpServletRequest req) throws SQLException {
-        GoodsPic profile = Daos.ext(dao, FieldFilter.create(GoodsPic.class, "^avatarSmall$")).fetch(GoodsPic.class, picId);
-        if (profile == null || profile.getAvatarSmall() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getAvatarSmall();
+//        GoodsPic profile = Daos.ext(dao, FieldFilter.create(GoodsPic.class, "^avatarSmall$")).fetch(GoodsPic.class, picId);
+//        if (profile == null || profile.getAvatarSmall() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getAvatarSmall();
+        return imageService.getImg("avatarSmall","goods_pic","id",(int)picId);
     }
 
     @At
@@ -280,7 +284,7 @@ public class PhotographerGoodsModule extends BaseModule {
         try {
             BufferedImage image = Images.read(tf.getFile());
             String fileName = me.getId()+"_"+ new Date().getTime();
-            Images.writeJpeg(image, new File(imgPath+fileName + ".jpg"), 0.9f);
+            Images.writeJpeg(image, new File(imgPath+fileName + ".jpg"), 1.0f);
 
             imageData.setName(fileName);
             String path = request.getScheme() + "://" + request.getServerName()

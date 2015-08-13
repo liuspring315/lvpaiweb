@@ -272,7 +272,7 @@
                                     <div class="form-group">
                                         <label for="oy" class="col-sm-2 control-label">封面图片</label>
                                         <div class="col-sm-4">
-                                            <img alt="封面图片" id="img_avatar" src="${base}/manager/dicplace/avatar">
+                                            <img alt="封面图片" id="img_avatar" src="">
                                         </div>
                                     </div>
                                     <div class="form-group">

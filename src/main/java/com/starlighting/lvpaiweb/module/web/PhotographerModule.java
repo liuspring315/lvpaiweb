@@ -3,6 +3,7 @@ package com.starlighting.lvpaiweb.module.web;
 import com.restfb.types.User;
 import com.starlighting.lvpaiweb.bean.*;
 import com.starlighting.lvpaiweb.module.BaseModule;
+import com.starlighting.lvpaiweb.service.ImageService;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
@@ -10,6 +11,7 @@ import org.nutz.dao.FieldFilter;
 import org.nutz.dao.QueryResult;
 import org.nutz.dao.pager.Pager;
 import org.nutz.dao.util.Daos;
+import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.*;
 
@@ -30,9 +32,10 @@ import java.util.Map;
 @At("/web/photographer")
 public class PhotographerModule extends BaseModule {
 
+    @Inject
+    ImageService imageService;
     /**
      * 显示地点首页
-     * @param pager
      * @return
      */
     @GET
@@ -75,13 +78,14 @@ public class PhotographerModule extends BaseModule {
     @At("/goods_avatar_small")
     @GET
     public Object pic_avatar_small(@Param("id")long gid, HttpServletRequest req,@Param("..")Pager pager) throws SQLException {
-        pager.setPageSize(1);
-        Cnd cnd = Cnd.NEW().where("gid", "=", gid);
-        List<GoodsPic> goodsPics = dao.query(GoodsPic.class, cnd, pager);
-        if (goodsPics == null || goodsPics.size() == 0) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return goodsPics.get(0).getAvatarSmall();
+//        pager.setPageSize(1);
+//        Cnd cnd = Cnd.NEW().where("gid", "=", gid);
+//        List<GoodsPic> goodsPics = dao.query(GoodsPic.class, cnd, pager);
+//        if (goodsPics == null || goodsPics.size() == 0) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return goodsPics.get(0).getAvatarSmall();
+        return imageService.getImg("avatarSmall", "goods_pic", "gid", (int)gid);
     }
 
     @At("/allPhotographerList")

@@ -2,6 +2,7 @@ package com.starlighting.lvpaiweb.module.manager.dic;
 
 import com.starlighting.lvpaiweb.bean.*;
 import com.starlighting.lvpaiweb.module.BaseModule;
+import com.starlighting.lvpaiweb.service.ImageService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.dao.Cnd;
@@ -42,7 +43,8 @@ import java.util.List;
 @Ok("void")//避免误写导致敏感信息泄露到服务器外
 public class DicPlaceModule extends BaseModule {
     private static final Log log = Logs.get();
-
+    @Inject
+    ImageService imageService;
     @Inject("java:$config.get('img.small.w')")
     private int imgSmallWidth;
     @Inject("java:$config.get('img.small.h')")
@@ -249,46 +251,50 @@ public class DicPlaceModule extends BaseModule {
     @Ok("raw:jpg")
     @At("/avatar_small")
     @GET
-    public Object readAvatarSmall(@Param("id")long placeId, HttpServletRequest req) throws SQLException {
-        DicPlace profile = Daos.ext(dao, FieldFilter.create(DicPlace.class, "^avatarSmall$")).fetch(DicPlace.class, placeId);
-        if (profile == null || profile.getAvatarSmall() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getAvatarSmall();
+    public Object readAvatarSmall(@Param("id")int placeId, HttpServletRequest req) throws SQLException {
+//        DicPlace profile = Daos.ext(dao, FieldFilter.create(DicPlace.class, "^avatarSmall$")).fetch(DicPlace.class, placeId);
+//        if (profile == null || profile.getAvatarSmall() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getAvatarSmall();
+        return imageService.getImg("avatarSmall","dic_place","id",placeId);
     }
     @RequiresUser
     @Ok("raw:jpg")
     @At("/avatar_medium")
     @GET
-    public Object readAvatarMedium(@Param("id")long placeId, HttpServletRequest req) throws SQLException {
-        DicPlace profile = Daos.ext(dao, FieldFilter.create(DicPlace.class, "^avatarMedium$")).fetch(DicPlace.class, placeId);
-        if (profile == null || profile.getAvatarMedium() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getAvatarMedium();
+    public Object readAvatarMedium(@Param("id")int placeId, HttpServletRequest req) throws SQLException {
+//        DicPlace profile = Daos.ext(dao, FieldFilter.create(DicPlace.class, "^avatarMedium$")).fetch(DicPlace.class, placeId);
+//        if (profile == null || profile.getAvatarMedium() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getAvatarMedium();
+        return imageService.getImg("avatarMedium","dic_place","id",placeId);
     }
     @RequiresUser
     @Ok("raw:jpg")
     @At("/avatar_big")
     @GET
-    public Object readAvatarBig(@Param("id")long placeId, HttpServletRequest req) throws SQLException {
-        DicPlace profile = Daos.ext(dao, FieldFilter.create(DicPlace.class, "^avatarBig$")).fetch(DicPlace.class, placeId);
-        if (profile == null || profile.getAvatarBig() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getAvatarBig();
+    public Object readAvatarBig(@Param("id")int placeId, HttpServletRequest req) throws SQLException {
+//        DicPlace profile = Daos.ext(dao, FieldFilter.create(DicPlace.class, "^avatarBig$")).fetch(DicPlace.class, placeId);
+//        if (profile == null || profile.getAvatarBig() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getAvatarBig();
+        return imageService.getImg("avatarBig","dic_place","id",placeId);
     }
 
     @RequiresUser
     @Ok("raw:jpg")
     @At("/pic_avatar_small")
     @GET
-    public Object pic_avatar_small(@Param("id")long picId, HttpServletRequest req) throws SQLException {
-        DicPlacePics profile = Daos.ext(dao, FieldFilter.create(DicPlacePics.class, "^avatarSmall$")).fetch(DicPlacePics.class, picId);
-        if (profile == null || profile.getAvatarSmall() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getAvatarSmall();
+    public Object pic_avatar_small(@Param("id")int picId, HttpServletRequest req) throws SQLException {
+//        DicPlacePics profile = Daos.ext(dao, FieldFilter.create(DicPlacePics.class, "^avatarSmall$")).fetch(DicPlacePics.class, picId);
+//        if (profile == null || profile.getAvatarSmall() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getAvatarSmall();
+        return imageService.getImg("avatarSmall","dic_place_pics","id",picId);
     }
 
 }

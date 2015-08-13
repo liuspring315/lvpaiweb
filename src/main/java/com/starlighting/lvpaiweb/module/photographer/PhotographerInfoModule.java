@@ -2,6 +2,7 @@ package com.starlighting.lvpaiweb.module.photographer;
 
 import com.starlighting.lvpaiweb.bean.*;
 import com.starlighting.lvpaiweb.module.BaseModule;
+import com.starlighting.lvpaiweb.service.ImageService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.aop.interceptor.ioc.TransAop;
@@ -43,7 +44,8 @@ public class PhotographerInfoModule extends BaseModule {
 
 
     private static final Log log = Logs.get();
-
+    @Inject
+    ImageService imageService;
     @Inject("java:$config.get('img.small.w')")
     private int imgSmallWidth;
     @Inject("java:$config.get('img.small.h')")
@@ -159,17 +161,7 @@ public class PhotographerInfoModule extends BaseModule {
             Mvcs.getHttpSession().setAttribute("upload-error-msg", msg);
     }
 
-    @RequiresUser
-    @Ok("raw:jpg")
-    @At("/avatar")
-    @GET
-    public Object readAvatar( @Attr("me")UserGeneralInfo me, HttpServletRequest req) throws SQLException {
-        PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^avatarSmall$")).fetch(PhotographerExtra.class, me.getId());
-        if (profile == null || profile.getAvatarSmall() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getAvatarSmall();
-    }
+
 
 
     @RequiresUser
@@ -226,14 +218,28 @@ public class PhotographerInfoModule extends BaseModule {
 
     @RequiresUser
     @Ok("raw:jpg")
+    @At("/avatar")
+    @GET
+    public Object readAvatar( @Attr("me")UserGeneralInfo me, HttpServletRequest req) throws SQLException {
+//        PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^avatarSmall$")).fetch(PhotographerExtra.class, me.getId());
+//        if (profile == null || profile.getAvatarSmall() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getAvatarSmall();
+        return imageService.getImg("avatarSmall","photographer_extra","user_general_info_id",me.getId());
+    }
+
+    @RequiresUser
+    @Ok("raw:jpg")
     @At("/avatar_idcardFront")
     @GET
     public Object readAvatarIdcardFront( @Attr("me")UserGeneralInfo me, HttpServletRequest req) throws SQLException {
-        PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^idcardFront$")).fetch(PhotographerExtra.class, me.getId());
-        if (profile == null || profile.getIdcardFront() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getIdcardFront();
+//        PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^idcardFront$")).fetch(PhotographerExtra.class, me.getId());
+//        if (profile == null || profile.getIdcardFront() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getIdcardFront();
+        return imageService.getImg("idcard_front","photographer_extra","user_general_info_id",me.getId());
     }
 
     @RequiresUser
@@ -241,11 +247,12 @@ public class PhotographerInfoModule extends BaseModule {
     @At("/avatar_idcardBack")
     @GET
     public Object readAvatarIdcardBack( @Attr("me")UserGeneralInfo me, HttpServletRequest req) throws SQLException {
-        PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^idcardBack$")).fetch(PhotographerExtra.class, me.getId());
-        if (profile == null || profile.getIdcardBack() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getIdcardBack();
+//        PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^idcardBack$")).fetch(PhotographerExtra.class, me.getId());
+//        if (profile == null || profile.getIdcardBack() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getIdcardBack();
+        return imageService.getImg("idcard_back","photographer_extra","user_general_info_id",me.getId());
     }
 
 

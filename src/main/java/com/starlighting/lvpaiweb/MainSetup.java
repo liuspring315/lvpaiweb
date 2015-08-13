@@ -14,13 +14,17 @@ import org.nutz.dao.impl.FileSqlManager;
 import org.nutz.dao.sql.Sql;
 import org.nutz.dao.util.Daos;
 import org.nutz.ioc.Ioc;
+import org.nutz.log.Log;
+import org.nutz.log.Logs;
 import org.nutz.mvc.NutConfig;
 import org.nutz.mvc.Setup;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import java.util.List;
 
 public class MainSetup implements Setup {
-
+    private static final Log log = Logs.get();
     public void init(NutConfig conf) {
         Ioc ioc = conf.getIoc();
         Dao dao = ioc.get(Dao.class);
@@ -48,6 +52,14 @@ public class MainSetup implements Setup {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
+
+        JedisPool jedisPool = ioc.get(JedisPool.class);
+        try (Jedis jedis = jedisPool.getResource()) { // Java7的语法
+            String re = jedis.set("_nutzbook_test_key", "http://nutzbook.wendal.net");
+            log.debug("redis say : " + re);
+            re = jedis.get("_nutzbook_test_key");
+            log.debug("redis say : " + re);
+        } finally {}
     }
 
     public void destroy(NutConfig conf) {

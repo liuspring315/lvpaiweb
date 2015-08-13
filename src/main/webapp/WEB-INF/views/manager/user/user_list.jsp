@@ -306,7 +306,10 @@
                 $("#div_email").html(user.email);
                 $("#div_mobile").html(user.mobile);
                 $("#div_birthday").html(user.birthday);
-                $("#div_placeName").html(user.dicPlace.placeName);
+                if(user.dicPlace){
+                    $("#div_placeName").html(user.dicPlace.placeName);
+                }
+
 
                 if(user.userType==2){
                     $("#div_introduction").html(user.photographerExtra.introduction);
@@ -327,7 +330,7 @@
                         $("#authenticationBtn").hide();
                     }
 
-                }else if(user.userType() ==1){
+                }else if(user.userType ==1){
                     $("#div_introduction").html(user.customerExtra.introduction);
                     $("#authenticationBtn").hide();
                 }

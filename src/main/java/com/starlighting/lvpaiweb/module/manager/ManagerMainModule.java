@@ -2,9 +2,11 @@ package com.starlighting.lvpaiweb.module.manager;
 
 import com.starlighting.lvpaiweb.bean.UserGeneralInfo;
 import com.starlighting.lvpaiweb.module.BaseModule;
+import com.starlighting.lvpaiweb.service.ImageService;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.dao.FieldFilter;
 import org.nutz.dao.util.Daos;
+import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Attr;
@@ -24,7 +26,8 @@ import java.sql.SQLException;
 @IocBean // 声明为Ioc容器中的一个Bean
 @At("/manager") // 整个模块的路径前缀
 public class ManagerMainModule extends BaseModule {
-
+    @Inject
+    ImageService imageService;
     @At
     @GET
     @Ok("jsp:views.manager.main")
@@ -36,11 +39,12 @@ public class ManagerMainModule extends BaseModule {
     @At("/avatar")
     @GET
     public Object readAvatar(@Attr("me")UserGeneralInfo me, HttpServletRequest req) throws SQLException {
-        UserGeneralInfo profile = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^headThumb$")).fetch(UserGeneralInfo.class, me.getId());
-        if (profile == null || profile.getHeadThumb() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getHeadThumb();
+//        UserGeneralInfo profile = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^headThumb$")).fetch(UserGeneralInfo.class, me.getId());
+//        if (profile == null || profile.getHeadThumb() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getHeadThumb();
+        return imageService.getImg("head_thumb","user_general_info","id",me.getId());
     }
 
 

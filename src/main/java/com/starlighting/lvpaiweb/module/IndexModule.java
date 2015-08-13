@@ -1,6 +1,7 @@
 package com.starlighting.lvpaiweb.module;
 
 import com.starlighting.lvpaiweb.bean.*;
+import com.starlighting.lvpaiweb.service.ImageService;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.Condition;
@@ -8,6 +9,7 @@ import org.nutz.dao.FieldFilter;
 import org.nutz.dao.QueryResult;
 import org.nutz.dao.pager.Pager;
 import org.nutz.dao.util.Daos;
+import org.nutz.ioc.loader.annotation.Inject;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.lang.Strings;
 import org.nutz.mvc.annotation.*;
@@ -25,6 +27,9 @@ import java.sql.SQLException;
 
 @IocBean // 声明为Ioc容器中的一个Bean
 public class IndexModule extends BaseModule {
+    @Inject
+    ImageService imageService;
+
     @At({"/", "/main"})
     @GET
     @Ok("jsp:views.main")
@@ -86,22 +91,24 @@ public class IndexModule extends BaseModule {
      @At("/web/avatar")
      @GET
      public Object readAvatar(@Param("id") int id, HttpServletRequest req) throws SQLException {
-        UserGeneralInfo profile = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^headThumb$")).fetch(UserGeneralInfo.class,id);
-        if (profile == null || profile.getHeadThumb() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getHeadThumb();
+//        UserGeneralInfo profile = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^headThumb$")).fetch(UserGeneralInfo.class,id);
+//        if (profile == null || profile.getHeadThumb() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getHeadThumb();
+         return imageService.getImg("head_thumb","user_general_info","id",id);
     }
 
     @Ok("raw:jpg")
     @At("/web/photographer/avatar_small")
     @GET
     public Object readPhotographerAvatar(@Param("id") int id, HttpServletRequest req) throws SQLException {
-        PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^avatarSmall$")).fetch(PhotographerExtra.class,id);
-        if (profile == null || profile.getAvatarSmall() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getAvatarSmall();
+//        PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^avatarSmall$")).fetch(PhotographerExtra.class,id);
+//        if (profile == null || profile.getAvatarSmall() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getAvatarSmall();
+        return imageService.getImg("avatarSmall","photographer_extra","user_general_info_id",id);
     }
 
 }

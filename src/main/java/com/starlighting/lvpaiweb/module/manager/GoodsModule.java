@@ -2,6 +2,7 @@ package com.starlighting.lvpaiweb.module.manager;
 
 import com.starlighting.lvpaiweb.bean.*;
 import com.starlighting.lvpaiweb.module.BaseModule;
+import com.starlighting.lvpaiweb.service.ImageService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.nutz.dao.Cnd;
@@ -34,7 +35,8 @@ import java.util.Map;
 public class GoodsModule extends BaseModule {
 
     private static final Log log = Logs.get();
-
+    @Inject
+    ImageService imageService;
     @Inject("java:$config.get('img.small.w')")
     private int imgSmallWidth;
     @Inject("java:$config.get('img.small.h')")
@@ -101,11 +103,12 @@ public class GoodsModule extends BaseModule {
     @At("/pic_avatar_small")
     @GET
     public Object pic_avatar_small(@Param("id")long picId, HttpServletRequest req) throws SQLException {
-        GoodsPic profile = Daos.ext(dao, FieldFilter.create(GoodsPic.class, "^avatarSmall$")).fetch(GoodsPic.class, picId);
-        if (profile == null || profile.getAvatarSmall() == null) {
-            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-        }
-        return profile.getAvatarSmall();
+//        GoodsPic profile = Daos.ext(dao, FieldFilter.create(GoodsPic.class, "^avatarSmall$")).fetch(GoodsPic.class, picId);
+//        if (profile == null || profile.getAvatarSmall() == null) {
+//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+//        }
+//        return profile.getAvatarSmall();
+        return imageService.getImg("avatarSmall","goods_pic","id",(int)picId);
     }
 
 }
