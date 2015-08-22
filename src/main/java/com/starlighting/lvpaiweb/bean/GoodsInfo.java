@@ -2,6 +2,7 @@ package com.starlighting.lvpaiweb.bean;
 
 import org.nutz.dao.entity.annotation.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  * @创建时间：2015-06-11
  */
 @Table("goods_info")
-public class GoodsInfo  extends BasePojo{
+public class GoodsInfo  extends BasePojo implements Serializable {
 
     /**
      * 主键

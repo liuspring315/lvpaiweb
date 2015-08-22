@@ -2,13 +2,15 @@ package com.starlighting.lvpaiweb.bean;
 
 import org.nutz.dao.entity.annotation.*;
 
+import java.io.Serializable;
+
 
 /**
 *  摄影机构表
 */
 
 //@Table("agency_extra")
-public class AgencyExtra  extends BasePojo{
+public class AgencyExtra  extends BasePojo  implements Serializable {
 
 	/**
 	 * 主键

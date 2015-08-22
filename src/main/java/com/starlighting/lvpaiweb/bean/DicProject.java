@@ -4,6 +4,8 @@ import org.nutz.dao.entity.annotation.Column;
 import org.nutz.dao.entity.annotation.Id;
 import org.nutz.dao.entity.annotation.Table;
 
+import java.io.Serializable;
+
 /**
  * @功能说明：提供项目
  * @公司名称：首都信息发展股份有限公司
@@ -11,7 +13,7 @@ import org.nutz.dao.entity.annotation.Table;
  * @创建时间：2015-06-11
  */
 @Table("dic_project")
-public class DicProject  extends BasePojo{
+public class DicProject  extends BasePojo implements Serializable {
 
     /**
      * 主键

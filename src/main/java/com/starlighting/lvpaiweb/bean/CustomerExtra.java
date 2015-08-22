@@ -2,6 +2,7 @@ package com.starlighting.lvpaiweb.bean;
 
 import org.nutz.dao.entity.annotation.*;
 
+import java.io.Serializable;
 
 
 /**
@@ -9,7 +10,7 @@ import org.nutz.dao.entity.annotation.*;
 */
 
 @Table("customer_extra")
-public class CustomerExtra  extends BasePojo{
+public class CustomerExtra  extends BasePojo implements Serializable {
 
 	/**
 	 * 会员标识

@@ -2,6 +2,7 @@ package com.starlighting.lvpaiweb.bean;
 
 import org.nutz.dao.entity.annotation.*;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
 */
 
 @Table("photo_order")
-public class PhotoOrder  extends BasePojo{
+public class PhotoOrder  extends BasePojo implements Serializable {
 
 	/**
 	 * 主键

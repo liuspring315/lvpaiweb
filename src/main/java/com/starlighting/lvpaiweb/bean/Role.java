@@ -8,10 +8,11 @@ package com.starlighting.lvpaiweb.bean;
  */
 import org.nutz.dao.entity.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Table("t_role")
-public class Role extends BasePojo {
+public class Role extends BasePojo  implements Serializable {
 
     @Id
     protected long id;

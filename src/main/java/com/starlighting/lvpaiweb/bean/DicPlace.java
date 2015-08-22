@@ -2,6 +2,7 @@ package com.starlighting.lvpaiweb.bean;
 
 import org.nutz.dao.entity.annotation.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @创建时间：2015-06-11
  */
 @Table("dic_place")
-public class DicPlace extends BasePojo{
+public class DicPlace extends BasePojo implements Serializable {
 
     /**
      * 主键
