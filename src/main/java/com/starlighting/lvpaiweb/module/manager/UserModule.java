@@ -77,9 +77,9 @@ public class UserModule extends BaseModule {
             return new NutMap().setv("ok", false).setv("msg", "不能删除当前用户!!");
         }
         dao.delete(UserGeneralInfo.class, id); // 再严谨一些的话,需要判断是否为>0
-        dao.clear(PhotographerExtra.class, Cnd.where("userGeneralInfoId", "=", me));
-        dao.clear(AgencyExtra.class, Cnd.where("userGeneralInfoId", "=", me));
-        dao.clear(CustomerExtra.class, Cnd.where("userGeneralInfoId", "=", me));
+        dao.delete(PhotographerExtra.class, id);
+//        dao.delete(AgencyExtra.class, id);
+        dao.delete(CustomerExtra.class, id);
         return new NutMap().setv("ok", true);
     }
 //
