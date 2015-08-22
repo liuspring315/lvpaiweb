@@ -177,7 +177,10 @@ public class DicPlaceModule extends BaseModule {
                 Images.writeJpeg(image, out, 0.8f);
                 dicPlace.setAvatarBig(out.toByteArray());
 
-                dao.update(dicPlace, "^avatar|avatarMedium|avatarBig$");
+                dao.update(dicPlace, "^avatarSmall|avatarMedium|avatarBig$");
+                imageService.removeImg("avatarSmall", "dic_place", placeId);
+                imageService.removeImg("avatarMedium","dic_place",placeId);
+                imageService.removeImg("avatarBig","dic_place",placeId);
             } catch(DaoException e) {
                 log.error("System Error", e);
                 msg = "系统错误";
@@ -233,6 +236,9 @@ public class DicPlaceModule extends BaseModule {
                     dicPlacePics.setAvatarBig(out.toByteArray());
 
                     dao.insert(dicPlacePics);
+                    imageService.removeImg("avatarSmall", "dic_place_pics", (long)dicPlacePics.getId());
+                    imageService.removeImg("avatarMedium", "dic_place_pics", (long)dicPlacePics.getId());
+                    imageService.removeImg("avatarBig", "dic_place_pics", (long)dicPlacePics.getId());
                 }
             } catch(DaoException e) {
                 log.error("System Error", e);

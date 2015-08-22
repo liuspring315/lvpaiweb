@@ -231,6 +231,10 @@ public class PhotographerGoodsModule extends BaseModule {
                     goodsPic.setAvatarBig(out.toByteArray());
 
                     dao.insert(goodsPic);
+
+                    imageService.removeImg("avatarSmall", "goods_pic", (long) goodsPic.getId());
+                    imageService.removeImg("avatarMedium", "goods_pic", (long) goodsPic.getId());
+                    imageService.removeImg("avatarBig", "goods_pic", (long)goodsPic.getId());
                 }
             } catch(DaoException e) {
                 log.error("System Error", e);

@@ -67,4 +67,13 @@ public class ImageService {
 
     }
 
+
+    public void removeImg(final String filedName,String tableName,Long id) {
+        String path = imgPath + tableName + File.separator + filedName + File.separator;
+        File file = new File(path + id.longValue() + ".jpg");
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+
 }

@@ -183,7 +183,7 @@
 <body class="skin-blue">
 <div class="wrapper">
 
-    <%@ include file="/WEB-INF/views/include/manager/menu.jsp" %>
+        <%@ include file="/WEB-INF/views/include/manager/menu.jsp" %>
     <!-- Right side column. Contains the navbar and content of the page -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->

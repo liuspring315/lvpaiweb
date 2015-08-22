@@ -148,6 +148,8 @@ public class PhotographerInfoModule extends BaseModule {
                 userGeneralInfo.setHeadThumb(out.toByteArray());
 
                 dao.update(userGeneralInfo, "^headThumb$");
+
+                imageService.removeImg("headThumb", "user_general_info", (long) me.getId());
             } catch(DaoException e) {
                 log.error("System Error", e);
                 msg = "系统错误";
@@ -202,6 +204,10 @@ public class PhotographerInfoModule extends BaseModule {
                     photographerExtra.setAvatarBig(out.toByteArray());
 
                     dao.update(photographerExtra, "^avatar|avatarMedium|avatarBig$");
+
+                    imageService.removeImg("avatar", "photographer_extra", (long)me.getId());
+                    imageService.removeImg("avatarMedium", "photographer_extra", (long) me.getId());
+                    imageService.removeImg("avatarBig", "photographer_extra", (long) me.getId());
                 } catch (DaoException e) {
                     log.error("System Error", e);
                     msg = "系统错误";

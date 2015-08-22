@@ -80,7 +80,7 @@ public class IndexModule extends BaseModule {
     @At("/web/queryDicPlaceList")
     @Ok("json")
     public Object queryDicPlaceList(Integer placeType,@Param("..")Pager pager) {
-        Condition cnd = Cnd.wrap("ispub = 1 AND placeType = " + placeType);
+        Condition cnd = Cnd.wrap("ispub = 1 AND placeType = " + placeType + " order by id desc");
         pager.setPageSize(3);
         return Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName$")).query(DicPlace.class, cnd, pager);
     }

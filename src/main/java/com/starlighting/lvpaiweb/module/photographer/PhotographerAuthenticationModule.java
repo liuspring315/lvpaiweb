@@ -91,6 +91,7 @@ public class PhotographerAuthenticationModule extends BaseModule {
                 userGeneralInfo.setAuthenticationStat(AuthenticationStatEnum.WAIT_APPROVE.getCode());
                 dao.update(photographerExtra, "^idcardBack|idcardFront|certificateNum|certificateType$");
                 dao.update(userGeneralInfo, "^authenticationStat$");
+
             } catch(DaoException e) {
                 log.error("System Error", e);
                 msg = "系统错误";
