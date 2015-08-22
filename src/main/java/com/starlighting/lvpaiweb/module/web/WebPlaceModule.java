@@ -51,7 +51,7 @@ public class WebPlaceModule extends BaseModule {
     @At
     @Ok("jsp:views.web.place_all")
     public Object place1(@Param("..")Pager pager) {
-        Condition cnd = Cnd.wrap("ispub = 1 and placeType = 1");
+        Condition cnd = Cnd.wrap("ispub = 1 and placeType = 1 order by id desc");
         QueryResult qr = new QueryResult();
         qr.setList(Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName|about$")).query(DicPlace.class, cnd, pager));
         qr.setPager(pager);
@@ -62,7 +62,7 @@ public class WebPlaceModule extends BaseModule {
     @At
     @Ok("jsp:views.web.place_all")
     public Object place2(@Param("..")Pager pager) {
-        Condition cnd = Cnd.wrap("ispub = 1 and placeType = 2");
+        Condition cnd = Cnd.wrap("ispub = 1 and placeType = 2 order by id desc");
         QueryResult qr = new QueryResult();
         qr.setList(Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName|about$")).query(DicPlace.class, cnd, pager));
         qr.setPager(pager);
