@@ -65,6 +65,9 @@ public class PhotographerGoodsModule extends BaseModule {
     @Inject("java:$config.get('img.path')")
     private String imgPath;
 
+    @Inject("java:$config.get('webroot.path')")
+    private String webrootPath;
+
     @At
     @Ok("jsp:views.photographer.photographer_goods_list")
     public Object list(@Attr("me")UserGeneralInfo me) {
@@ -80,9 +83,16 @@ public class PhotographerGoodsModule extends BaseModule {
     public Object query(@Attr("me")UserGeneralInfo me, @Param("..")Pager pager) {
         QueryResult qr = new QueryResult();
         Cnd cnd = Cnd.NEW().where("serviceProviderId","=",me.getId());
-        List<GoodsInfo> goodsInfos = dao.query(GoodsInfo.class, cnd, pager);
+
+        List<GoodsInfo> goodsInfos = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^id|goodsName|photoType|totalPrice|advancePayment|orderStat$")).query(GoodsInfo.class, cnd,pager);
         dao.fetchLinks(goodsInfos,"dicProjects");
-        dao.fetchLinks(goodsInfos,"dicPlace");
+        for(GoodsInfo goodsInfo : goodsInfos){
+            if(goodsInfo.getPlace() != null){
+                goodsInfo.setDicPlace(Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName$")).fetch(DicPlace.class, goodsInfo.getPlace()));
+            }
+        }
+
+
         qr.setList(goodsInfos);
         pager.setRecordCount(dao.count(GoodsInfo.class, cnd));
         qr.setPager(pager);
@@ -291,9 +301,7 @@ public class PhotographerGoodsModule extends BaseModule {
             Images.writeJpeg(image, new File(imgPath+fileName + ".jpg"), 1.0f);
 
             imageData.setName(fileName);
-            String path = request.getScheme() + "://" + request.getServerName()
-                    + ":" + request.getServerPort() + request.getContextPath()
-                    + "/";
+            String path = webrootPath;
             imageData.setPath(path+"web/images/"+fileName);
 
         } catch(DaoException e) {

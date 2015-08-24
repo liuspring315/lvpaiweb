@@ -149,7 +149,7 @@ public class PhotographerInfoModule extends BaseModule {
 
                 dao.update(userGeneralInfo, "^headThumb$");
 
-                imageService.removeImg("headThumb", "user_general_info", "id",(long) me.getId());
+                imageService.removeImg("head_thumb", "user_general_info", "id",(long) me.getId());
             } catch(DaoException e) {
                 log.error("System Error", e);
                 msg = "系统错误";
