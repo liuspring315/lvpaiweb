@@ -34,7 +34,7 @@
                     </c:if>
                         <c:if test="${not empty me}">
                         <li><a href="${ctx}/">欢迎，${me.userName}</a></li>
-
+                            <li><a href="${ctx}/logout">退出</a></li>
                         </c:if>
             </ul>
         </div>
