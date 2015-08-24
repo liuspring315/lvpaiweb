@@ -34,6 +34,7 @@
                     </c:if>
                         <c:if test="${not empty me}">
                         <li><a href="${ctx}/">欢迎，${me.userName}</a></li>
+                            <c:if test="${me.userType != 1}"><li><a href="${ctx}/manager/main">管理</a></li></c:if>
                             <li><a href="${ctx}/logout">退出</a></li>
                         </c:if>
             </ul>
