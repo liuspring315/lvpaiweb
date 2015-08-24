@@ -121,7 +121,7 @@
     </div>
     <div class="row lvpaizhe-margin-bottom">
         <div class="col-sm-12 text-center">
-            您想作为<b>摄影师</b>或服务提供者加入我们？请移步<a href="${ctx}/server/register">加盟入驻</a>
+            您想作为<b>摄影师</b>或服务提供者加入我们？请移步<a href="${ctx}/web/server/register">加盟入驻</a>
         </div>
     </div>
     <!-- Three columns of text below the carousel -->
