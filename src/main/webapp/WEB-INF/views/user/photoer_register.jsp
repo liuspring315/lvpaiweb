@@ -32,7 +32,7 @@
                         dataType: "json",
                         success: function (data) {
                             if (data && data.ok) {
-                                alert("注册成功,请等待审核");
+                                alert("注册成功 请重新登录并填写个人资料提交审核。");
                                 window.location = ctx + "/login";
                             } else {
                                 var emsg = data.msg;
