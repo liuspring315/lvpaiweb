@@ -54,8 +54,12 @@ public class PhotographerModule extends BaseModule {
     @Ok("jsp:views.web.photographer_view")
     public Object view(@Param("id") int id) {
         UserGeneralInfo userGeneralInfo = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^id|lastName|location")).fetch(UserGeneralInfo.class,id);
-        dao.fetchLinks(userGeneralInfo,"dicPlace");
-        dao.fetchLinks(userGeneralInfo,"photographerExtra");
+
+        if(userGeneralInfo.getLocation() != null){
+            userGeneralInfo.setDicPlace(Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName$")).fetch(DicPlace.class, userGeneralInfo.getLocation()));
+        }
+        userGeneralInfo.setPhotographerExtra(Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^authentication|orderNum$")).fetch(PhotographerExtra.class, userGeneralInfo.getId()));
+
         return userGeneralInfo;
     }
 
@@ -64,9 +68,13 @@ public class PhotographerModule extends BaseModule {
     public Object goodsquery(@Param("pid") int pid, @Param("..")Pager pager) {
         QueryResult qr = new QueryResult();
         Cnd cnd = Cnd.NEW().where("serviceProviderId","=",pid).and("orderStat","=",OrderStatEnum.APPROVE_YES.getCode());
-        List<GoodsInfo> goodsInfos = dao.query(GoodsInfo.class, cnd, pager);
+        List<GoodsInfo> goodsInfos = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^id|goodsName|photoType|totalPrice|advancePayment|$")).query(GoodsInfo.class, cnd,pager);
         dao.fetchLinks(goodsInfos,"dicProjects");
-        dao.fetchLinks(goodsInfos,"dicPlace");
+        for(GoodsInfo goodsInfo : goodsInfos){
+            if(goodsInfo.getPlace() != null){
+                goodsInfo.setDicPlace(Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName$")).fetch(DicPlace.class, goodsInfo.getPlace()));
+            }
+        }
         qr.setList(goodsInfos);
         pager.setRecordCount(dao.count(GoodsInfo.class, cnd));
         qr.setPager(pager);
@@ -95,10 +103,16 @@ public class PhotographerModule extends BaseModule {
 //                .and("authenticationStat", "=", AuthenticationStatEnum.APPROVE_YES.getCode())
                 .desc("id");
         QueryResult qr = new QueryResult();
-        qr.setList(dao.query(UserGeneralInfo.class, cnd, pager));
+        List<UserGeneralInfo> userGeneralInfoList = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^id|lastName|photographerExtra.authentication|photographerExtra.orderNum|dicPlace.placeName$")).query(UserGeneralInfo.class, cnd, pager);
+
+        for(UserGeneralInfo userGeneralInfo : userGeneralInfoList){
+            if(userGeneralInfo.getLocation() != null){
+                userGeneralInfo.setDicPlace(Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName$")).fetch(DicPlace.class, userGeneralInfo.getLocation()));
+            }
+            userGeneralInfo.setPhotographerExtra(Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^authentication|orderNum$")).fetch(PhotographerExtra.class, userGeneralInfo.getId()));
+        }
+        qr.setList(userGeneralInfoList);
         qr.setPager(pager);
-        dao.fetchLinks(qr.getList(),"dicPlace");
-        dao.fetchLinks(qr.getList(),"photographerExtra");
         pager.setRecordCount(dao.count(UserGeneralInfo.class, cnd));
         return qr;
     }

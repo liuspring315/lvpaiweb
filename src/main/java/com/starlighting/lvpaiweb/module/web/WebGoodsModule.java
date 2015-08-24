@@ -1,9 +1,13 @@
 package com.starlighting.lvpaiweb.module.web;
 
+import com.starlighting.lvpaiweb.bean.DicPlace;
 import com.starlighting.lvpaiweb.bean.GoodsInfo;
+import com.starlighting.lvpaiweb.bean.PhotographerExtra;
 import com.starlighting.lvpaiweb.bean.UserGeneralInfo;
 import com.starlighting.lvpaiweb.module.BaseModule;
+import org.nutz.dao.FieldFilter;
 import org.nutz.dao.pager.Pager;
+import org.nutz.dao.util.Daos;
 import org.nutz.ioc.loader.annotation.IocBean;
 import org.nutz.mvc.annotation.At;
 import org.nutz.mvc.annotation.Ok;
@@ -35,8 +39,11 @@ public class WebGoodsModule extends BaseModule {
         dao.fetchLinks(goodsInfo,"dicProjects");
 
         UserGeneralInfo userGeneralInfo = dao.fetch(UserGeneralInfo.class,goodsInfo.getServiceProviderId());
-        dao.fetchLinks(userGeneralInfo,"photographerExtra");
-        dao.fetchLinks(userGeneralInfo,"dicPlace");
+        if(userGeneralInfo.getLocation() != null){
+            userGeneralInfo.setDicPlace(Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName$")).fetch(DicPlace.class, userGeneralInfo.getLocation()));
+        }
+        userGeneralInfo.setPhotographerExtra(Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^authentication|orderNum$")).fetch(PhotographerExtra.class, userGeneralInfo.getId()));
+
         Map<String,Object> obj = new HashMap<String,Object>();
         obj.put("goodsInfo",goodsInfo);
         obj.put("userGeneralInfo",userGeneralInfo);

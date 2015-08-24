@@ -8,6 +8,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.nutz.aop.interceptor.ioc.TransAop;
 import org.nutz.dao.Cnd;
 import org.nutz.dao.FieldFilter;
+import org.nutz.dao.QueryResult;
 import org.nutz.dao.pager.Pager;
 import org.nutz.dao.util.Daos;
 import org.nutz.ioc.aop.Aop;
@@ -60,7 +61,15 @@ public class AuthorityModule extends BaseModule {
     @Ok("json:{locked:'password|salt',ignoreNull:true}") //禁止把password和salt字段进行传输
     public Object users(@Param("userName")String userName, @Param("..")Pager pager) {
         Cnd cnd = Strings.isBlank(userName)? Cnd.NEW() : Cnd.where("userName", "like", "%" + userName + "%");
-        return ajaxOk(query(UserGeneralInfo.class, cnd.asc("id"), pager, null));
+        if (pager != null && pager.getPageNumber() < 1) {
+            pager.setPageNumber(1);
+        }
+        List<UserGeneralInfo> userGeneralInfoList = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^id|userType|userName|email|lastName$")).query(UserGeneralInfo.class, cnd);
+        dao.fetchLinks(userGeneralInfoList,"roles");
+        dao.fetchLinks(userGeneralInfoList,"permissions");
+
+        pager.setRecordCount(dao.count(UserGeneralInfo.class, cnd));
+        return ajaxOk(new QueryResult(userGeneralInfoList, pager));
     }
 
     /**

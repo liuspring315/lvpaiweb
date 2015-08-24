@@ -78,7 +78,8 @@ public class WebPlaceModule extends BaseModule {
     @Ok("jsp:views.web.place_view")
     public Object view(@Param("id") int id,@Param("..")Pager pager) {
         DicPlace dicPlace = Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName|about$")).fetch(DicPlace.class,id);
-        dao.fetchLinks(dicPlace,"dicPlacePicsList");
+        dicPlace.setDicPlacePicsList(Daos.ext(dao, FieldFilter.create(DicPlacePics.class, "^id$")).query(DicPlacePics.class, Cnd.where("did", "=", id)));
+
         Map<String,Object> obj = new HashMap<String,Object>();
         obj.put("dicPlace",dicPlace);
 
@@ -88,9 +89,15 @@ public class WebPlaceModule extends BaseModule {
                 .and("location","=",dicPlace.getId())
                 .desc("id");
         pager.setPageSize(4);
-        List<UserGeneralInfo> userGeneralInfoList = dao.query(UserGeneralInfo.class, cnd, pager);
-        dao.fetchLinks(userGeneralInfoList,"dicPlace");
-        dao.fetchLinks(userGeneralInfoList,"photographerExtra");
+
+        List<UserGeneralInfo> userGeneralInfoList = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^id|lastName$")).query(UserGeneralInfo.class, cnd, pager);
+
+        for(UserGeneralInfo userGeneralInfo : userGeneralInfoList){
+            if(userGeneralInfo.getLocation() != null){
+                userGeneralInfo.setDicPlace(Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName$")).fetch(DicPlace.class, userGeneralInfo.getLocation()));
+            }
+            userGeneralInfo.setPhotographerExtra(Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^authentication|orderNum$")).fetch(PhotographerExtra.class, userGeneralInfo.getId()));
+        }
 
         obj.put("photographerExtra",userGeneralInfoList);
 
