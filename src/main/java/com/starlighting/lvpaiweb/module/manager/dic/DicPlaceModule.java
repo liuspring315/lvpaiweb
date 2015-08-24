@@ -162,25 +162,25 @@ public class DicPlaceModule extends BaseModule {
                 BufferedImage image = Images.read(tf.getFile());
                 image = Images.zoomScale(image, imgSmallWidth, imgSmallHeight, Color.WHITE);
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
-                Images.writeJpeg(image, out, 0.8f);
+                Images.writeJpeg(image, out, 1.0f);
                 dicPlace.setAvatarSmall(out.toByteArray());
 
                 image = Images.read(tf.getFile());
                 image = Images.zoomScale(image, imgMediumWidth, imgMediumHeight, Color.WHITE);
                 out = new ByteArrayOutputStream();
-                Images.writeJpeg(image, out, 0.8f);
+                Images.writeJpeg(image, out, 1.0f);
                 dicPlace.setAvatarMedium(out.toByteArray());
 
                 image = Images.read(tf.getFile());
-                image = Images.zoomScale(image, imgBigHeight, imgBigHeight, Color.WHITE);
+                image = Images.zoomScale(image, imgBigWidth, imgBigHeight, Color.WHITE);
                 out = new ByteArrayOutputStream();
-                Images.writeJpeg(image, out, 0.8f);
+                Images.writeJpeg(image, out, 1.0f);
                 dicPlace.setAvatarBig(out.toByteArray());
 
                 dao.update(dicPlace, "^avatarSmall|avatarMedium|avatarBig$");
-                imageService.removeImg("avatarSmall", "dic_place", placeId);
-                imageService.removeImg("avatarMedium","dic_place",placeId);
-                imageService.removeImg("avatarBig","dic_place",placeId);
+                imageService.removeImg("avatarSmall", "dic_place","id", placeId);
+                imageService.removeImg("avatarMedium","dic_place","id",placeId);
+                imageService.removeImg("avatarBig","dic_place","id",placeId);
             } catch(DaoException e) {
                 log.error("System Error", e);
                 msg = "系统错误";
@@ -220,25 +220,25 @@ public class DicPlaceModule extends BaseModule {
                     BufferedImage image = Images.read(tf[i].getFile());
                     image = Images.zoomScale(image, imgSmallWidth, imgSmallHeight, Color.WHITE);
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    Images.writeJpeg(image, out, 0.8f);
+                    Images.writeJpeg(image, out, 1.0f);
                     dicPlacePics.setAvatarSmall(out.toByteArray());
 
                     image = Images.read(tf[i].getFile());
                     image = Images.zoomScale(image, imgMediumWidth, imgMediumHeight, Color.WHITE);
                     out = new ByteArrayOutputStream();
-                    Images.writeJpeg(image, out, 0.8f);
+                    Images.writeJpeg(image, out, 1.0f);
                     dicPlacePics.setAvatarMedium(out.toByteArray());
 
                     image = Images.read(tf[i].getFile());
-                    image = Images.zoomScale(image, imgBigHeight, imgBigHeight, Color.WHITE);
+                    image = Images.zoomScale(image, imgBigWidth, imgBigHeight, Color.WHITE);
                     out = new ByteArrayOutputStream();
-                    Images.writeJpeg(image, out, 0.8f);
+                    Images.writeJpeg(image, out, 1.0f);
                     dicPlacePics.setAvatarBig(out.toByteArray());
 
                     dao.insert(dicPlacePics);
-                    imageService.removeImg("avatarSmall", "dic_place_pics", (long)dicPlacePics.getId());
-                    imageService.removeImg("avatarMedium", "dic_place_pics", (long)dicPlacePics.getId());
-                    imageService.removeImg("avatarBig", "dic_place_pics", (long)dicPlacePics.getId());
+                    imageService.removeImg("avatarSmall", "dic_place_pics","id", (long)dicPlacePics.getId());
+                    imageService.removeImg("avatarMedium", "dic_place_pics","id", (long)dicPlacePics.getId());
+                    imageService.removeImg("avatarBig", "dic_place_pics","id", (long)dicPlacePics.getId());
                 }
             } catch(DaoException e) {
                 log.error("System Error", e);

@@ -215,26 +215,26 @@ public class PhotographerGoodsModule extends BaseModule {
                     BufferedImage image = Images.read(tf[i].getFile());
                     image = Images.zoomScale(image, imgSmallWidth, imgSmallHeight, Color.WHITE);
                     ByteArrayOutputStream out = new ByteArrayOutputStream();
-                    Images.writeJpeg(image, out, 0.8f);
+                    Images.writeJpeg(image, out, 1.0f);
                     goodsPic.setAvatarSmall(out.toByteArray());
 
                     image = Images.read(tf[i].getFile());
                     image = Images.zoomScale(image, imgMediumWidth, imgMediumHeight, Color.WHITE);
                     out = new ByteArrayOutputStream();
-                    Images.writeJpeg(image, out, 0.8f);
+                    Images.writeJpeg(image, out, 1.0f);
                     goodsPic.setAvatarMedium(out.toByteArray());
 
                     image = Images.read(tf[i].getFile());
-                    image = Images.zoomScale(image, imgBigHeight, imgBigHeight, Color.WHITE);
+                    image = Images.zoomScale(image, imgBigWidth, imgBigHeight, Color.WHITE);
                     out = new ByteArrayOutputStream();
-                    Images.writeJpeg(image, out, 0.8f);
+                    Images.writeJpeg(image, out, 1.0f);
                     goodsPic.setAvatarBig(out.toByteArray());
 
                     dao.insert(goodsPic);
 
-                    imageService.removeImg("avatarSmall", "goods_pic", (long) goodsPic.getId());
-                    imageService.removeImg("avatarMedium", "goods_pic", (long) goodsPic.getId());
-                    imageService.removeImg("avatarBig", "goods_pic", (long)goodsPic.getId());
+                    imageService.removeImg("avatarSmall", "goods_pic","id", (long) goodsPic.getId());
+                    imageService.removeImg("avatarMedium", "goods_pic","id", (long) goodsPic.getId());
+                    imageService.removeImg("avatarBig", "goods_pic","id", (long)goodsPic.getId());
                 }
             } catch(DaoException e) {
                 log.error("System Error", e);
@@ -250,18 +250,18 @@ public class PhotographerGoodsModule extends BaseModule {
         return gid;
     }
 
-    @RequiresUser
-    @Ok("raw:jpg")
-    @At("/pic_avatar_small")
-    @GET
-    public Object pic_avatar_small(@Param("id")long picId, HttpServletRequest req) throws SQLException {
-//        GoodsPic profile = Daos.ext(dao, FieldFilter.create(GoodsPic.class, "^avatarSmall$")).fetch(GoodsPic.class, picId);
-//        if (profile == null || profile.getAvatarSmall() == null) {
-//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-//        }
-//        return profile.getAvatarSmall();
-        return imageService.getImg("avatarSmall","goods_pic","id",(int)picId);
-    }
+//    @RequiresUser
+//    @Ok("raw:jpg")
+//    @At("/pic_avatar_small")
+//    @GET
+//    public Object pic_avatar_small(@Param("id")long picId, HttpServletRequest req) throws SQLException {
+////        GoodsPic profile = Daos.ext(dao, FieldFilter.create(GoodsPic.class, "^avatarSmall$")).fetch(GoodsPic.class, picId);
+////        if (profile == null || profile.getAvatarSmall() == null) {
+////            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+////        }
+////        return profile.getAvatarSmall();
+//        return imageService.getImg("avatarSmall","goods_pic","id",(int)picId);
+//    }
 
     @At
     @Ok("jsp:views.photographer.editor_test")

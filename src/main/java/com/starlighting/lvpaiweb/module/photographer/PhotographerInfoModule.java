@@ -149,7 +149,7 @@ public class PhotographerInfoModule extends BaseModule {
 
                 dao.update(userGeneralInfo, "^headThumb$");
 
-                imageService.removeImg("headThumb", "user_general_info", (long) me.getId());
+                imageService.removeImg("headThumb", "user_general_info", "id",(long) me.getId());
             } catch(DaoException e) {
                 log.error("System Error", e);
                 msg = "系统错误";
@@ -205,9 +205,9 @@ public class PhotographerInfoModule extends BaseModule {
 
                     dao.update(photographerExtra, "^avatar|avatarMedium|avatarBig$");
 
-                    imageService.removeImg("avatar", "photographer_extra", (long)me.getId());
-                    imageService.removeImg("avatarMedium", "photographer_extra", (long) me.getId());
-                    imageService.removeImg("avatarBig", "photographer_extra", (long) me.getId());
+                    imageService.removeImg("avatar", "photographer_extra","user_general_info_id", (long)me.getId());
+                    imageService.removeImg("avatarMedium", "photographer_extra","user_general_info_id", (long) me.getId());
+                    imageService.removeImg("avatarBig", "photographer_extra","user_general_info_id", (long) me.getId());
                 } catch (DaoException e) {
                     log.error("System Error", e);
                     msg = "系统错误";

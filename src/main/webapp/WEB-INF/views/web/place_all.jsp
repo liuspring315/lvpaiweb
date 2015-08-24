@@ -22,7 +22,7 @@
     </div>
     <div class="row lvpaizhe-background-color">
         <div class="col-lg-7">
-            <img class="movieborder" src="${ctx}/web/place/avatar_medium?id=${place.id}" alt="...">
+            <img class="movieborder" src="${ctx}/rs/dic_place/avatarMedium/${place.id}.jpg" alt="...">
         </div>
         <div class="col-lg-5">
             <div class="row">
@@ -43,8 +43,9 @@
 <jsp:include flush="true" page="/WEB-INF/views/include/footer.jsp"/>
 <script type="text/javascript">
     function showplace(id){
-        $("#placeid").val(id);
-        $("#place_view_form").submit();
+//        $("#placeid").val(id);
+//        $("#place_view_form").submit();
+        window.location.href = "${ctx}/web/place/view?id="+id;
     }
 </script>
 </body>

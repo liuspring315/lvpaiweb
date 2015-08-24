@@ -132,6 +132,52 @@
 <script type="text/javascript">
     $(function () {
         $.ajax({
+            url : ctx + "/web/queryPhotographerList",
+            dataType : "json",
+            success : function(data) {
+                console.log(data);
+                var photographer_list_html = "";
+                console.log(data.list);
+                for (var i=0;i<data.list.length;i++) {
+                    var user = data.list[i];
+                    console.log(user);
+                    var tmp = "";
+                    tmp = tmp + "<div class=\"col-lg-3 col-sm-6\">";
+                    tmp = tmp + "<div class=\"lvpaizhe-photographer-index-box\">";
+                    <!-- 头像及简介 -->
+                    tmp = tmp + "<div class=\"row\">";
+                    tmp = tmp + "<div class=\"col-sm-4 lvpaizhe-photographer-avatar\">";
+                    tmp = tmp + "<img class=\"img-circle\" src=\"${ctx}/rs/user_general_info/head_thumb/"+user.id+".jpg\" alt=\"...\" width=\"80\" height=\"80\">";
+                    tmp = tmp + "</div>";
+                    tmp = tmp + "<div class=\"col-sm-8\">";
+                    tmp = tmp + "<table class=\"lvpaizhe-photographer-table\">";
+                    tmp = tmp + "<tr>";
+                    tmp = tmp + "<td>"+user.lastName+"</td>";
+                    tmp = tmp + "<td>"+(user.dicPlace==null?"":user.dicPlace.placeName)+"</td>";
+                    tmp = tmp + "</tr>";
+                    tmp = tmp + "<tr>";
+                    tmp = tmp + "<td colspan=\"2\">V"+(user.photographerExtra==null?"":user.photographerExtra.authentication)+" 认证</td>";
+                    tmp = tmp + "</tr>";
+                    tmp = tmp + "<tr>";
+                    tmp = tmp + "<td colspan=\"2\">"+(user.photographerExtra==null?"":user.photographerExtra.orderNum)+" 次成功服务拍摄</td>";
+                    tmp = tmp + "</tr>";
+                    tmp = tmp + "</table>";
+                    tmp = tmp + "</div>";
+                    tmp = tmp + "</div>";
+                    <!-- 代表作 -->
+                    tmp = tmp + "<div class=\"row\">";
+                    tmp = tmp + "<div class=\"col-sm-12 lvpaizhe-photographer-pic\">";
+                    tmp = tmp + "<a href=\"#\" onclick=\"javascript:showphotographer("+user.id+")\"><img src=\"${ctx}/rs/photographer_extra/avatarSmall/"+user.id+".jpg\" width=\"242\" height=\"175\"></a>";
+                    tmp = tmp + "</div>";
+                    tmp = tmp + "</div>";
+                    tmp = tmp + "</div>";
+                    tmp = tmp + "</div>";
+                    photographer_list_html += tmp;
+                }
+                $("#div_photographer_list").html(photographer_list_html);
+            }
+        });
+        $.ajax({
             url : ctx + "/web/queryDicPlaceList",
             data : {placeType:0},
             dataType : "json",
@@ -143,7 +189,7 @@
                     console.log(place);
                     var tmp = "";
                     tmp = tmp + "<div class=\"col-sm-4  place\" >";
-                    tmp = tmp + "<a href=\"#\" onclick=\"javascript:showplace("+place.id+")\"><img src=\"${ctx}/web/place/avatar_small?id="+place.id+"\" alt=\"...\"  width=\"370\" height=\"250\"></a>";
+                    tmp = tmp + "<a href=\"#\" onclick=\"javascript:showplace("+place.id+")\"><img src=\"${ctx}/rs/dic_place/avatarSmall/"+place.id+".jpg\" alt=\"...\"  width=\"370\" height=\"250\"></a>";
                     tmp = tmp + "<p class=\"text-center\">"+place.placeName+"</p>";
                     tmp = tmp + "</div>";
 
@@ -164,7 +210,7 @@
                     console.log(place);
                     var tmp = "";
                     tmp = tmp + "<div class=\"col-sm-4  place\" >";
-                    tmp = tmp + "<a href=\"#\" onclick=\"javascript:showplace("+place.id+")\"><img src=\"${ctx}/web/place/avatar_small?id="+place.id+"\" alt=\"...\"  width=\"370\" height=\"250\"></a>";
+                    tmp = tmp + "<a href=\"#\" onclick=\"javascript:showplace("+place.id+")\"><img src=\"${ctx}/rs/dic_place/avatarSmall/"+place.id+".jpg\" alt=\"...\"  width=\"370\" height=\"250\"></a>";
                     tmp = tmp + "<p class=\"text-center\"><a href=\"#\" onclick=\"javascript:showplace("+place.id+")\">"+place.placeName+"</a></p>";
                     tmp = tmp + "</div>";
 
@@ -173,52 +219,7 @@
                 $("#div_dicPlace_list1").html(dicPlace_list_html);
             }
         });
-        $.ajax({
-            url : ctx + "/web/queryPhotographerList",
-            dataType : "json",
-            success : function(data) {
-                console.log(data);
-                var photographer_list_html = "";
-                console.log(data.list);
-                for (var i=0;i<data.list.length;i++) {
-                    var user = data.list[i];
-                    console.log(user);
-                    var tmp = "";
-                    tmp = tmp + "<div class=\"col-lg-3 col-sm-6\">";
-                    tmp = tmp + "<div class=\"lvpaizhe-photographer-index-box\">";
-                    <!-- 头像及简介 -->
-                    tmp = tmp + "<div class=\"row\">";
-                    tmp = tmp + "<div class=\"col-sm-4 lvpaizhe-photographer-avatar\">";
-                    tmp = tmp + "<img class=\"img-circle\" src=\"${ctx}/web/avatar?id="+user.id+"\" alt=\"...\" width=\"80\" height=\"80\">";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "<div class=\"col-sm-8\">";
-                    tmp = tmp + "<table class=\"lvpaizhe-photographer-table\">";
-                    tmp = tmp + "<tr>";
-                    tmp = tmp + "<td>"+user.lastName+"</td>";
-                    tmp = tmp + "<td>"+(user.dicPlace==null?"":user.dicPlace.placeName)+"</td>";
-                    tmp = tmp + "</tr>";
-                    tmp = tmp + "<tr>";
-                    tmp = tmp + "<td colspan=\"2\">V"+(user.photographerExtra==null?"":user.photographerExtra.authentication)+" 认证</td>";
-                    tmp = tmp + "</tr>";
-                    tmp = tmp + "<tr>";
-                    tmp = tmp + "<td colspan=\"2\">"+(user.photographerExtra==null?"":user.photographerExtra.orderNum)+" 次成功服务拍摄</td>";
-                    tmp = tmp + "</tr>";
-                    tmp = tmp + "</table>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "</div>";
-                    <!-- 代表作 -->
-                    tmp = tmp + "<div class=\"row\">";
-                    tmp = tmp + "<div class=\"col-sm-12 lvpaizhe-photographer-pic\">";
-                    tmp = tmp + "<a href=\"#\" onclick=\"javascript:showphotographer("+user.id+")\"><img src=\"${ctx}/web/photographer/avatar_small?id="+user.id+"\" width=\"242\" height=\"175\"></a>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "</div>";
-                    tmp = tmp + "</div>";
-                    photographer_list_html += tmp;
-                }
-                $("#div_photographer_list").html(photographer_list_html);
-            }
-        });
+
     });
 </script>
 <form action="${ctx}/web/place/view" id="place_view_form" method="post">

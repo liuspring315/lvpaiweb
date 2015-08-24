@@ -68,11 +68,35 @@ public class ImageService {
     }
 
 
-    public void removeImg(final String filedName,String tableName,Long id) {
+    public void removeImg(final String filedName,String tableName,String condition,Long id) {
+//        String path = imgPath + tableName + File.separator + filedName + File.separator;
+//        File file = new File(path + id.longValue() + ".jpg");
+//        if (file.exists()) {
+//            file.delete();
+//        }
         String path = imgPath + tableName + File.separator + filedName + File.separator;
-        File file = new File(path + id.longValue() + ".jpg");
-        if (file.exists()) {
+        File filePath= new File(path);
+        if(!filePath.exists() ){
+            filePath.mkdirs();
+        }
+        File file=new File(path + id.intValue() + ".jpg");
+        if(file.exists() ) {
             file.delete();
+        }
+        Sql sql = Sqls.create("SELECT "+filedName+" FROM "+tableName+" WHERE "+condition + "=" + id);
+        sql.setCallback(new SqlCallback() {
+            public Object invoke(Connection conn, ResultSet rs, Sql sql) throws SQLException {
+                if (rs.next())
+                    return (rs.getBytes(filedName));
+                return null;
+            }
+        });
+        dao.execute(sql);
+        byte[] img =  (byte[])sql.getResult();
+        if(img != null) {
+            InputStream sbs = new ByteArrayInputStream(img);
+            BufferedImage image = Images.read(sbs);
+            Images.writeJpeg(image, file, 1.0f);
         }
     }
 

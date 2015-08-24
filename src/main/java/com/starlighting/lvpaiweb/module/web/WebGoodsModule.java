@@ -28,7 +28,6 @@ public class WebGoodsModule extends BaseModule {
      * @param id
      * @return
      */
-    @POST
     @At
     @Ok("jsp:views.web.goods_view")
     public Object view(@Param("id") int id) {

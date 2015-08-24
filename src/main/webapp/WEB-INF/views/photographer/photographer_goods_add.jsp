@@ -204,7 +204,7 @@
                         <div class="col-sm-10">
                             <c:if test="${not empty obj.goodsInfo.goodsPics}">
                                 <c:forEach var="pic" items="${obj.goodsInfo.goodsPics}" varStatus="status">
-                                    <img src="${ctx}/photographer/goods/pic_avatar_small?id=${pic.id}">
+                                    <img src="${ctx}/rs/goods_pic/avatarSmall/${pic.id}.jpg">
                                 </c:forEach>
                             </c:if>
                         </div>

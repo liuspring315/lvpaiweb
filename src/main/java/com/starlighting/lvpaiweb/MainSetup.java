@@ -53,13 +53,13 @@ public class MainSetup implements Setup {
 //            e.printStackTrace();
 //        }
 
-        JedisPool jedisPool = ioc.get(JedisPool.class);
-        try (Jedis jedis = jedisPool.getResource()) { // Java7的语法
-            String re = jedis.set("_nutzbook_test_key", "http://nutzbook.wendal.net");
-            log.debug("redis say : " + re);
-            re = jedis.get("_nutzbook_test_key");
-            log.debug("redis say : " + re);
-        } finally {}
+//        JedisPool jedisPool = ioc.get(JedisPool.class);
+//        try (Jedis jedis = jedisPool.getResource()) { // Java7的语法
+//            String re = jedis.set("_nutzbook_test_key", "http://nutzbook.wendal.net");
+//            log.debug("redis say : " + re);
+//            re = jedis.get("_nutzbook_test_key");
+//            log.debug("redis say : " + re);
+//        } finally {}
     }
 
     public void destroy(NutConfig conf) {

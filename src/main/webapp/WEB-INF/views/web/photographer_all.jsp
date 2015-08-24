@@ -111,8 +111,9 @@
 <jsp:include flush="true" page="/WEB-INF/views/include/footer.jsp"/>
 <script type="text/javascript">
     function showphotographer(id){
-        $("#photographerid").val(id);
-        $("#photographer_view_form").submit();
+//        $("#photographerid").val(id);
+//        $("#photographer_view_form").submit();
+        window.location.href = "${ctx}/web/photographer/view?id="+id;
     }
     $(function () {
         $.ajax({
@@ -131,7 +132,7 @@
                     <!-- 头像及简介 -->
                     tmp = tmp + "<div class=\"row\">";
                     tmp = tmp + "<div class=\"col-sm-4 lvpaizhe-photographer-avatar\">";
-                    tmp = tmp + "<img class=\"img-circle\" src=\"${ctx}/web/avatar?id="+user.id+"\" alt=\"...\" width=\"80\" height=\"80\">";
+                    tmp = tmp + "<img class=\"img-circle\" src=\"${ctx}/rs/user_general_info/head_thumb/"+user.id+".jpg\" alt=\"...\" width=\"80\" height=\"80\">";
                     tmp = tmp + "</div>";
                     tmp = tmp + "<div class=\"col-sm-8\">";
                     tmp = tmp + "<table class=\"lvpaizhe-photographer-table\">";
@@ -151,7 +152,7 @@
                     <!-- 代表作 -->
                     tmp = tmp + "<div class=\"row\">";
                     tmp = tmp + "<div class=\"col-sm-12 lvpaizhe-photographer-pic\">";
-                    tmp = tmp + "<a href=\"#\" onclick=\"javascript:showphotographer("+user.id+")\"><img src=\"${ctx}/web/photographer/avatar_small?id="+user.id+"\" width=\"242\" height=\"175\"></a>";
+                    tmp = tmp + "<a href=\"#\" onclick=\"javascript:showphotographer("+user.id+")\"><img src=\"${ctx}/rs/photographer_extra/avatarSmall/"+user.id+".jpg\" width=\"242\" height=\"175\"></a>";
                     tmp = tmp + "</div>";
                     tmp = tmp + "</div>";
                     tmp = tmp + "</div>";

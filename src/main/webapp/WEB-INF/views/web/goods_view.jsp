@@ -27,7 +27,7 @@
             <div class="row">
                 <!-- 头像 -->
                 <div class="col-md-12">
-                    <img alt="140x140" src="${ctx}/web/avatar?id=${obj.userGeneralInfo.id}" class="img-rounded big-avatar" />
+                    <img alt="140x140" src="${ctx}/rs/user_general_info/head_thumb/${obj.userGeneralInfo.id}.jpg" class="img-rounded big-avatar" />
                 </div>
 
                 <!-- 摄影师信息 -->

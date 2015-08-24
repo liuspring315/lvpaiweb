@@ -15,7 +15,7 @@
     <!-- 摄影师头像及基本信息 -->
     <div class="row">
         <div class="col-md-2">
-            <img alt="140x140" src="${ctx}/web/avatar?id=${obj.id}" class="img-rounded big-avatar" />
+            <img alt="140x140" src="${ctx}/rs/user_general_info/head_thumb/${obj.id}.jpg" class="img-rounded big-avatar" />
         </div>
         <div class="col-md-10">
             <div class="row">
@@ -202,8 +202,9 @@
         });
     }
     function showgoods(id){
-        $("#goodsid").val(id);
-        $("#goods_view_form").submit();
+//        $("#goodsid").val(id);
+//        $("#goods_view_form").submit();
+        window.location.href = "${ctx}/web/goods/view?id="+id;
     }
 </script>
 <form action="${ctx}/web/goods/view" id="goods_view_form" method="post">

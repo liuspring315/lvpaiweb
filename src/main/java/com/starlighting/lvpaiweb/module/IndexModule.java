@@ -87,28 +87,28 @@ public class IndexModule extends BaseModule {
 
 
 
-     @Ok("raw:jpg")
-     @At("/web/avatar")
-     @GET
-     public Object readAvatar(@Param("id") int id, HttpServletRequest req) throws SQLException {
-//        UserGeneralInfo profile = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^headThumb$")).fetch(UserGeneralInfo.class,id);
-//        if (profile == null || profile.getHeadThumb() == null) {
-//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-//        }
-//        return profile.getHeadThumb();
-         return imageService.getImg("head_thumb","user_general_info","id",id);
-    }
+//     @Ok("raw:jpg")
+//     @At("/web/avatar")
+//     @GET
+//     public Object readAvatar(@Param("id") int id, HttpServletRequest req) throws SQLException {
+////        UserGeneralInfo profile = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^headThumb$")).fetch(UserGeneralInfo.class,id);
+////        if (profile == null || profile.getHeadThumb() == null) {
+////            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+////        }
+////        return profile.getHeadThumb();
+//         return imageService.getImg("head_thumb","user_general_info","id",id);
+//    }
 
-    @Ok("raw:jpg")
-    @At("/web/photographer/avatar_small")
-    @GET
-    public Object readPhotographerAvatar(@Param("id") int id, HttpServletRequest req) throws SQLException {
-//        PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^avatarSmall$")).fetch(PhotographerExtra.class,id);
-//        if (profile == null || profile.getAvatarSmall() == null) {
-//            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
-//        }
-//        return profile.getAvatarSmall();
-        return imageService.getImg("avatarSmall","photographer_extra","user_general_info_id",id);
-    }
+//    @Ok("raw:jpg")
+//    @At("/web/photographer/avatar_small")
+//    @GET
+//    public Object readPhotographerAvatar(@Param("id") int id, HttpServletRequest req) throws SQLException {
+////        PhotographerExtra profile = Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^avatarSmall$")).fetch(PhotographerExtra.class,id);
+////        if (profile == null || profile.getAvatarSmall() == null) {
+////            return new File(req.getSession().getServletContext().getRealPath("/rs/user_avatar/none.jpg"));
+////        }
+////        return profile.getAvatarSmall();
+//        return imageService.getImg("avatarSmall","photographer_extra","user_general_info_id",id);
+//    }
 
 }

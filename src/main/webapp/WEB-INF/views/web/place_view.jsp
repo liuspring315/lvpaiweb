@@ -21,7 +21,7 @@
     </div>
     <div class="row">
         <div class="col-lg-12 text-center">
-            <img class="movieborder" src="${ctx}/web/place/avatar_big?id=${obj.dicPlace.id}" alt="...">
+            <img class="movieborder" src="${ctx}/rs/dic_place/avatarBig/${obj.dicPlace.id}.jpg" alt="...">
         </div>
     </div>
     <div class="row">
@@ -34,7 +34,7 @@
         <div class="col-lg-12">
             <h3>记录这里</h3>
             <c:forEach items="${obj.dicPlace.dicPlacePicsList}" var ="pic">
-            <img src="${ctx}/web/place/pic_big?id=${pic.id}" alt="..." width="1140">
+            <img src="${ctx}/rs/dic_place_pics/avatarBig/${pic.id}.jpg" alt="..." width="1140">
             </c:forEach>
         </div>
     </div>
@@ -81,7 +81,7 @@
                 <!-- 头像及简介 -->
                 <div class="row">
                     <div class="col-sm-4 lvpaizhe-photographer-avatar">
-                        <img class="img-circle" src="${ctx}/web/avatar?id=${photographer.id}" alt="..." width="80" height="80">
+                        <img class="img-circle" src="${ctx}/rs/user_general_info/head_thumb/${photographer.id}.jpg" alt="..." width="80" height="80">
                     </div>
                     <div class="col-sm-8">
                         <table class="lvpaizhe-photographer-table">
@@ -101,7 +101,7 @@
                 <!-- 代表作 -->
                 <div class="row">
                     <div class="col-sm-12 lvpaizhe-photographer-pic">
-                        <img src="${ctx}/web/photographer/avatar_small?id=${photographer.id}" width="242" height="175">
+                        <img src="${ctx}/rs/photographer_extra/avatarSmall/${photographer.id}.jpg" width="242" height="175">
                     </div>
                 </div>
                 <div class="row">
