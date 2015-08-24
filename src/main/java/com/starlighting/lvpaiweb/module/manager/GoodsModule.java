@@ -65,7 +65,11 @@ public class GoodsModule extends BaseModule {
         Cnd cnd = Cnd.NEW();
         List<GoodsInfo> goodsInfos = dao.query(GoodsInfo.class, cnd, pager);
         dao.fetchLinks(goodsInfos,"dicProjects");
-        dao.fetchLinks(goodsInfos,"dicPlace");
+        for(GoodsInfo goodsInfo : goodsInfos){
+            if(goodsInfo.getPlace() != null){
+                goodsInfo.setDicPlace(Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName$")).fetch(DicPlace.class, goodsInfo.getPlace()));
+            }
+        }
         qr.setList(goodsInfos);
         pager.setRecordCount(dao.count(GoodsInfo.class, cnd));
         qr.setPager(pager);
