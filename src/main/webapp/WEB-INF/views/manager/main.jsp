@@ -26,38 +26,6 @@
         <section class="content">
             <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-xs-2">
-                    <div class="form-group">
-                        <label>认证等级</label>
-                        <span class="label label-danger">未认证</span>
-                    </div>
-                </div>
-                <div class="col-xs-2">
-                    <div class="form-group">
-                        <label>用户名</label>
-                        <span>王君毅</span>
-                    </div>
-                </div>
-                <div class="col-xs-2">
-                    <div class="form-group">
-                        <label>邮箱</label>
-                        <span>lvpaizhe@126.com</span>
-                    </div>
-                </div>
-                <div class="col-xs-2">
-                    <div class="form-group">
-                        <label>手机号码</label>
-                        <span>15801234051</span>
-                    </div>
-                </div>
-                <div class="col-xs-2">
-                    <div class="form-group">
-                        <label>所在地</label>
-                        <span>北京</span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         首页
