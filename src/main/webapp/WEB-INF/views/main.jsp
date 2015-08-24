@@ -6,14 +6,16 @@
     <%@ include file="/WEB-INF/views/include/meta.jsp" %>
     <script type="text/javascript">
         function showplace(id){
-            $("#placeid").val(id);
-            $("#place_view_form").submit();
+//            $("#placeid").val(id);
+//            $("#place_view_form").submit();
+            window.location.href = "${ctx}/web/place/view?id="+id;
         }
     </script>
     <script type="text/javascript">
         function showphotographer(id){
-            $("#photographerid").val(id);
-            $("#photographer_view_form").submit();
+//            $("#photographerid").val(id);
+//            $("#photographer_view_form").submit();
+            window.location.href = "${ctx}/web/photographer/view?id="+id;
         }
     </script>
 </head>
