@@ -17,6 +17,7 @@ import org.nutz.mvc.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @功能说明：
@@ -70,10 +71,17 @@ public class IndexModule extends BaseModule {
                 .desc("id");
         QueryResult qr = new QueryResult();
         pager.setPageSize(4);
-        qr.setList(dao.query(UserGeneralInfo.class, cnd, pager));
+//        qr.setList(dao.query(UserGeneralInfo.class, cnd, pager));
+        List<UserGeneralInfo> userGeneralInfoList = Daos.ext(dao, FieldFilter.create(UserGeneralInfo.class, "^id|lastName|photographerExtra.authentication|photographerExtra.orderNum|dicPlace.placeName$")).query(UserGeneralInfo.class, cnd, pager);
+
+        for(UserGeneralInfo userGeneralInfo : userGeneralInfoList){
+            if(userGeneralInfo.getLocation() != null){
+                userGeneralInfo.setDicPlace(Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName$")).fetch(DicPlace.class, userGeneralInfo.getLocation()));
+            }
+            userGeneralInfo.setPhotographerExtra(Daos.ext(dao, FieldFilter.create(PhotographerExtra.class, "^authentication|orderNum$")).fetch(PhotographerExtra.class, userGeneralInfo.getId()));
+        }
+        qr.setList(userGeneralInfoList);
         qr.setPager(pager);
-        dao.fetchLinks(qr.getList(),"dicPlace");
-        dao.fetchLinks(qr.getList(),"photographerExtra");
         return qr;
     }
 
