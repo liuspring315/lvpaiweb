@@ -205,7 +205,7 @@ public class PhotographerInfoModule extends BaseModule {
 
                     dao.update(photographerExtra, "^avatar|avatarMedium|avatarBig$");
 
-                    imageService.removeImg("avatar", "photographer_extra","user_general_info_id", (long)me.getId());
+                    imageService.removeImg("avatarSmall", "photographer_extra","user_general_info_id", (long)me.getId());
                     imageService.removeImg("avatarMedium", "photographer_extra","user_general_info_id", (long) me.getId());
                     imageService.removeImg("avatarBig", "photographer_extra","user_general_info_id", (long) me.getId());
                 } catch (DaoException e) {
