@@ -1787,21 +1787,21 @@ function checkIllegalChar(){
     if(haveChar){
         return false;
     }
-    $("textarea").each(function(i){
-        if($(this).attr("htmlEdit")=="1"){
-            if(!checkCharHtml($(this).val())){
-                $(this).focus();
-                haveChar = true;
-                return false;
-            }
-        }else{
-            if(!checkChar($(this).val())){
-                $(this).focus();
-                haveChar = true;
-                return false;
-            }
-        }
-    });
+    //$("textarea").each(function(i){
+    //    if($(this).attr("htmlEdit")=="1"){
+    //        if(!checkCharHtml($(this).val())){
+    //            $(this).focus();
+    //            haveChar = true;
+    //            return false;
+    //        }
+    //    }else{
+    //        if(!checkChar($(this).val())){
+    //            $(this).focus();
+    //            haveChar = true;
+    //            return false;
+    //        }
+    //    }
+    //});
     if(haveChar){
         return false;
     }

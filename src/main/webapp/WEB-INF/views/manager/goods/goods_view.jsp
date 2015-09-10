@@ -3,10 +3,10 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/views/include/manager/meta.jsp" %>
-    <link rel="stylesheet" type="text/css" href="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
-    <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>
-    <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.js" type="text/javascript"></script>
-    <script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js" type="text/javascript"></script>
+    <%--<link rel="stylesheet" type="text/css" href="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />--%>
+    <%--<script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/wysihtml5-0.3.0.js" type="text/javascript"></script>--%>
+    <%--<script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.js" type="text/javascript"></script>--%>
+    <%--<script src="${resourceUrl}/manager/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js" type="text/javascript"></script>--%>
     <script src="${resourceUrl}/manager/plugins/jQuery/jquery.validate.js" type="text/javascript"></script>
     <script src="${resourceUrl}/manager/plugins/jQuery/jquery.metadata.js" type="text/javascript"></script>
 
@@ -138,11 +138,25 @@
                         <div class="form-group">
                             <label for="goodsDesc" class="col-sm-2 control-label">详细介绍</label>
                             <div class="col-sm-8">
-                                <textarea id="goodsDesc" name="goodsDesc" class="form-control"
-                                          placeholder="Enter text ..."
-                                          style="width: 100%; height: 500px; font-size: 14px; line-height: 18px;">
-                                          ${obj.goodsInfo.goodsDesc}
-                                </textarea>
+                                <%--<textarea id="goodsDesc" name="goodsDesc" class="form-control"--%>
+                                          <%--placeholder="Enter text ..."--%>
+                                          <%--style="width: 100%; height: 500px; font-size: 14px; line-height: 18px;">--%>
+                                          <%--${obj.goodsInfo.goodsDesc}--%>
+                                <%--</textarea>--%>
+                                    <!-- 配置文件 -->
+                                    <script type="text/javascript" src="${resourceUrl}/manager/plugins/ueditor/ueditor.config.js"></script>
+                                    <!-- 编辑器源码文件 -->
+                                    <script type="text/javascript" src="${resourceUrl}/manager/plugins/ueditor/ueditor.all.js"></script>
+                                    <!-- 语言包文件(建议手动加载语言包，避免在ie下，因为加载语言失败导致编辑器加载失败) -->
+                                    <script type="text/javascript" src="${resourceUrl}/manager/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+                                    <!-- 加载编辑器的容器 -->
+                                    <script id="goodsDesc" name="goodsDesc" type="text/plain">
+                                        ${obj.goodsInfo.goodsDesc}
+                                    </script>
+                                    <!-- 实例化编辑器 -->
+                                    <script type="text/javascript">
+                                        var editor = UE.getEditor('goodsDesc',{initialFrameHeight:500});
+                                    </script>
                             </div>
                         </div>
 

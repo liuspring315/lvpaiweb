@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center lvpaizhe-padding-bottom">
-            <h1><a href="lvpaiplace.html">${place.placeName}</a></h1>
+            <h1><a href="#" onclick="javascript:showplace(${place.id})">${place.placeName}</a></h1>
         </div>
     </div>
     <div class="row lvpaizhe-background-color">

@@ -130,6 +130,8 @@ public class UserGeneralInfo  extends BasePojo implements Serializable{
     protected List<Permission> permissions;
 
 
+
+
 	public Integer getId() {
 		return id;
 	}

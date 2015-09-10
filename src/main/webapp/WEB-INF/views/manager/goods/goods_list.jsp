@@ -110,8 +110,9 @@
                             + "<td>"+goods.id+"</td>"
                             + "<td><a onclick='javascript:updateGoods("+goods.id+")' href='#'>"+goods.goodsName+"</a></td>"
                             + "<td>";
-                    for (var j=0;j<goods.dicProjects;j++) {
+                    for (var j=0;j<goods.dicProjects.length;j++) {
                         var project = goods.dicProjects[i];
+                        if(project)
                         tmp =  tmp + "<span class=\""+project.projectIco+"\"></span>";
                     }
 

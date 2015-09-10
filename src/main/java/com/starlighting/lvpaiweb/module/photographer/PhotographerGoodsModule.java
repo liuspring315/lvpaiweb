@@ -160,7 +160,7 @@ public class PhotographerGoodsModule extends BaseModule {
             }
             goodsInfo.setDicProjects(ps);
             dao.insert(goodsInfo);
-            dao.insertLinks(goodsInfo, "dicProjects");
+            dao.insertRelation(goodsInfo, "dicProjects");
         }else{
             GoodsInfo data = dao.fetch(GoodsInfo.class,goodsInfo.getId());
             if(data.getOrderStat() == OrderStatEnum.WAIT_APPROVE.getCode()
