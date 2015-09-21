@@ -77,7 +77,7 @@ public class WebPlaceModule extends BaseModule {
     @At
     @Ok("jsp:views.web.place_view")
     public Object view(@Param("id") int id,@Param("..")Pager pager) {
-        DicPlace dicPlace = Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName|about$")).fetch(DicPlace.class,id);
+        DicPlace dicPlace = Daos.ext(dao, FieldFilter.create(DicPlace.class, "^id|placeName|about|details$")).fetch(DicPlace.class,id);
         dicPlace.setDicPlacePicsList(Daos.ext(dao, FieldFilter.create(DicPlacePics.class, "^id$")).query(DicPlacePics.class, Cnd.where("did", "=", id)));
 
         Map<String,Object> obj = new HashMap<String,Object>();
