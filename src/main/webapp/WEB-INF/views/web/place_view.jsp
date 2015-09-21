@@ -28,6 +28,7 @@
         <div class="col-lg-12">
             <h3>关于这里</h3>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${obj.dicPlace.about}</p>
+            <p>${obj.dicPlace.details}</p>
         </div>
     </div>
     <div class="row">
