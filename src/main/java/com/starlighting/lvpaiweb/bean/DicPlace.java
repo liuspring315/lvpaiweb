@@ -72,6 +72,13 @@ public class DicPlace extends BasePojo implements Serializable {
     @Column
     private Integer oy;
 
+
+    @Column("details")
+    @ColDefine(type = ColType.TEXT)
+    private String details;
+
+
+
     @Many(target = DicPlacePics.class, field = "did")
     private List<DicPlacePics> dicPlacePicsList;
 
@@ -165,5 +172,13 @@ public class DicPlace extends BasePojo implements Serializable {
 
     public void setAvatarMedium(byte[] avatarMedium) {
         this.avatarMedium = avatarMedium;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 }

@@ -151,6 +151,9 @@
                     $("#about").val(place.about);
                     $("#ispub").val(place.ispub);
                     $("#oy").val(place.oy);
+                    editor.reset();
+                    editor.setContent('');
+                    editor.setContent(place.details);
                     $("#img_avatar").prop("src",ctx + "/manager/dicplace/avatar_small?id="+place.id);
 
                     $.ajax({
@@ -240,6 +243,31 @@
                                         <div class="col-sm-8">
                                               <textarea class="form-control" maxlength="250"
                                                         name="about" id="about" rows="4" placeholder="字数限制：***"></textarea>
+                                        </div>
+                                    </div>
+                                    <!-- 详细介绍 -->
+                                    <div class="form-group">
+                                        <label for="details" class="col-sm-2 control-label">详细介绍</label>
+                                        <div class="col-sm-8">
+                                            <%--<textarea id="goodsDesc" name="goodsDesc" class="form-control"--%>
+                                            <%--placeholder="Enter text ..."--%>
+                                            <%--style="width: 100%; height: 500px; font-size: 14px; line-height: 18px;">--%>
+                                            <%--${obj.goodsInfo.goodsDesc}--%>
+                                            <%--</textarea>--%>
+                                            <!-- 配置文件 -->
+                                            <script type="text/javascript" src="${resourceUrl}/manager/plugins/ueditor/ueditor.config.js"></script>
+                                            <!-- 编辑器源码文件 -->
+                                            <script type="text/javascript" src="${resourceUrl}/manager/plugins/ueditor/ueditor.all.js"></script>
+                                            <!-- 语言包文件(建议手动加载语言包，避免在ie下，因为加载语言失败导致编辑器加载失败) -->
+                                            <script type="text/javascript" src="${resourceUrl}/manager/plugins/ueditor/lang/zh-cn/zh-cn.js"></script>
+                                            <!-- 加载编辑器的容器 -->
+                                            <script id="details" name="details" type="text/plain">
+
+                                            </script>
+                                            <!-- 实例化编辑器 -->
+                                            <script type="text/javascript">
+                                                var editor = UE.getEditor('details',{initialFrameHeight:500});
+                                            </script>
                                         </div>
                                     </div>
                                     <div class="form-group">

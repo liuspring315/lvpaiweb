@@ -115,6 +115,7 @@ public class DicPlaceModule extends BaseModule {
         data.setPlaceName(dicPlace.getPlaceName());
         data.setPlaceType(dicPlace.getPlaceType());
         data.setPid(dicPlace.getPid());
+        data.setDetails(dicPlace.getDetails());
         dao.update(data);
         return new NutMap().setv("ok", true);
 
