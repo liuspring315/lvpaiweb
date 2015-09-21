@@ -113,7 +113,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <span class="help-block">
-                                    <button type="button" class="btn btn-primary">全选</button>
+                                    <button type="button" class="btn btn-primary" id="chk_all_project_btn">全选</button>
                                 </span>
                             </div>
                         </div>
@@ -305,6 +305,9 @@
         </c:if>
 //        $('#goodsDesc').wysihtml5({locale: "zh-CN"});
 
+        $("#chk_all_project_btn").click(function(){
+            $("input[type='checkbox']").prop("checked",true);
+        });
     });//end ready
     function placeCallback(id,placeName){
         $("#placeName").val(placeName);
