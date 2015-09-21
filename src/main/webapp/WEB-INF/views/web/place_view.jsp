@@ -19,26 +19,26 @@
             <h1>${obj.dicPlace.placeName}</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-12 text-center">
-            <img class="movieborder" src="${ctx}/rs/dic_place/avatarBig/${obj.dicPlace.id}.jpg" alt="...">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <h3>关于这里</h3>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${obj.dicPlace.about}</p>
-            <p>${obj.dicPlace.details}</p>
-        </div>
-    </div>
+    <%--<div class="row">--%>
+        <%--<div class="col-lg-12 text-center">--%>
+            <%--<img class="movieborder" src="${ctx}/rs/dic_place/avatarBig/${obj.dicPlace.id}.jpg" alt="...">--%>
+        <%--</div>--%>
+    <%--</div>--%>
     <div class="row">
         <div class="col-lg-12">
-            <h3>记录这里</h3>
-            <c:forEach items="${obj.dicPlace.dicPlacePicsList}" var ="pic">
-            <img src="${ctx}/rs/dic_place_pics/avatarBig/${pic.id}.jpg" alt="..." width="1140">
-            </c:forEach>
+            <%--<h3>关于这里</h3>--%>
+            <%--<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${obj.dicPlace.about}</p>--%>
+            ${obj.dicPlace.details}
         </div>
     </div>
+    <%--<div class="row">--%>
+        <%--<div class="col-lg-12">--%>
+            <%--<h3>记录这里</h3>--%>
+            <%--<c:forEach items="${obj.dicPlace.dicPlacePicsList}" var ="pic">--%>
+            <%--<img src="${ctx}/rs/dic_place_pics/avatarBig/${pic.id}.jpg" alt="..." width="1140">--%>
+            <%--</c:forEach>--%>
+        <%--</div>--%>
+    <%--</div>--%>
     <div class="row lvpaizhe-background-color bookingphotographer">
         <div class="col-lg-12 text-center lvpaizhe-padding-bottom">
             <h1>预定推荐摄影师</h1>
